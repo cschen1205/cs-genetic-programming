@@ -1,6 +1,9 @@
 obj/
 bin/
 
+*/obj/
+*/bin/
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
