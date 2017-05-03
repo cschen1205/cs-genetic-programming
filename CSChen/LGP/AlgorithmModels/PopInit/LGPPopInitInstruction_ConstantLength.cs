@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimuKit.Solvers.LGP.AlgorithmModels.Mutation
+namespace CSChen.LGP.AlgorithmModels.Mutation
 {
     using System.Xml;
-    using SimuKit.Solvers.LGP.ComponentModels;
+    using CSChen.LGP.ComponentModels;
 
     public class LGPMutationInstructionFactory
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimuKit.Solvers.LGP.ComponentModels
+namespace CSChen.LGP.ComponentModels
 {
     using ProblemModels;
     using AlgorithmModels.Crossover;
@@ -12,7 +12,7 @@ namespace SimuKit.Solvers.LGP.ComponentModels
     using AlgorithmModels.RegInit;
     using AlgorithmModels.Selection;
     using AlgorithmModels.Survival;
-    using SimuKit.Math.Distribution;
+    using CSChen.Math.Distribution;
 
     /* Xianshun says:
      Algorithm 2.1 (LGP algorithm)

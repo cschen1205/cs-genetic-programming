@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimuKit.Solvers.LGP.ProblemModels
+namespace CSChen.LGP.ProblemModels
 {
-    using SimuKit.Solvers.LGP.ComponentModels;
+    using CSChen.LGP.ComponentModels;
 
     public class LGPEnvironment
     {

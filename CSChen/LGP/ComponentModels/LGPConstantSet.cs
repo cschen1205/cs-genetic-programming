@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimuKit.Solvers.LGP.ComponentModels
+namespace CSChen.LGP.ComponentModels
 {
     public class LGPConstantSet
     {
@@ -30,7 +30,7 @@ namespace SimuKit.Solvers.LGP.ComponentModels
         {
             for(int attempts=0; attempts < 10; attempts++)
             {
-                double r = mWeightSum * SimuKit.Math.Distribution.DistributionModel.GetUniform();
+                double r = mWeightSum * CSChen.Math.Distribution.DistributionModel.GetUniform();
 
                 double current_sum = 0;
                 foreach (KeyValuePair<LGPRegister, double> point in mRegisters)

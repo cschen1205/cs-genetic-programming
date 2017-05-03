@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimuKit.Solvers.LGP.AlgorithmModels.Selection
+namespace CSChen.LGP.AlgorithmModels.Selection
 {
     using System.Xml;
-    using SimuKit.Solvers.LGP.ComponentModels;
-    using SimuKit.Math.Distribution;
+    using CSChen.LGP.ComponentModels;
+    using CSChen.Math.Distribution;
 
     class LGPSelectionInstruction_Tournament : LGPSelectionInstruction
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimuKit.Solvers.LGP.ComponentModels.Operators
+namespace CSChen.LGP.ComponentModels.Operators
 {
     public class LGPOperator_Division : LGPOperator
     {

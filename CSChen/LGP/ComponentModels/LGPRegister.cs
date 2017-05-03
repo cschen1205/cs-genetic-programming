@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimuKit.Solvers.LGP.ComponentModels
+namespace CSChen.LGP.ComponentModels
 {
     public class LGPRegister
     {
@@ -42,7 +42,7 @@ namespace SimuKit.Solvers.LGP.ComponentModels
             return clone;
         }
         
-        public virtual void Mutate(SimuKit.Math.Distribution.Gaussian gaussian, double standard_deviation)
+        public virtual void Mutate(CSChen.Math.Distribution.Gaussian gaussian, double standard_deviation)
         {
             mValue+=gaussian.GetNormal() * standard_deviation;
         }

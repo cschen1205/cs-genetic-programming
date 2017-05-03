@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimuKit.Solvers.LGP.AlgorithmModels.Crossover
+namespace CSChen.LGP.AlgorithmModels.Crossover
 {
     using System.Xml;
-    using SimuKit.Solvers.LGP.ComponentModels;
-    using SimuKit.Math.Distribution;
+    using CSChen.LGP.ComponentModels;
+    using CSChen.Math.Distribution;
 
     // Xianshun says:
     // this is derived from Algorithm 5.1 of Section 5.7.1 of Linear Genetic Programming

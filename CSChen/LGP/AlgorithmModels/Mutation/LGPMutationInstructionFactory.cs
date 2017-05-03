@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimuKit.Solvers.LGP.AlgorithmModels.RegInit
+namespace CSChen.LGP.AlgorithmModels.RegInit
 {
     using System.Xml;
-    using SimuKit.Solvers.LGP.ComponentModels;
-    using SimuKit.Solvers.LGP.ProblemModels;
+    using CSChen.LGP.ComponentModels;
+    using CSChen.LGP.ProblemModels;
 
     public abstract class LGPRegInitInstruction
     {

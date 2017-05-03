@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimuKit.Solvers.LGP.AlgorithmModels.PopInit
+namespace CSChen.LGP.AlgorithmModels.PopInit
 {
     using System.Xml;
-    using SimuKit.Solvers.LGP.ComponentModels;
-    using SimuKit.Math.Distribution;
+    using CSChen.LGP.ComponentModels;
+    using CSChen.Math.Distribution;
 
     class LGPPopInitInstruction_VariableLength : LGPPopInitInstruction
     {

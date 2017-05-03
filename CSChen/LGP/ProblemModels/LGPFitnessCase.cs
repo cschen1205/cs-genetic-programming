@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimuKit.Solvers.LGP.ProblemModels
+namespace CSChen.LGP.ProblemModels
 {
     public abstract class LGPFitnessCase
     {

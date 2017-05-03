@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimuKit.Solvers.LGP.AlgorithmModels.Mutation
+namespace CSChen.LGP.AlgorithmModels.Mutation
 {
     using System.Xml;
-    using SimuKit.Solvers.LGP.ComponentModels;
-    using SimuKit.Math.Distribution;
+    using CSChen.LGP.ComponentModels;
+    using CSChen.Math.Distribution;
 
     public class LGPMutationInstruction_Macro : LGPMutationInstruction
     {
