@@ -46,13 +46,13 @@ namespace CSChen.LGP.AlgorithmModels.PopInit
 
         public override void Initialize(LGPPop pop)
         {
-            // Xianshun says:
+            // CSChen says:
 	        // specified here is a variable length initialization that selects initial program
 	        // lengths from a uniform distribution within a specified range of m_iInitialMinProgLength - m_iIinitialMaxProgLength
 	        // the method is recorded in chapter 7 section 7.6 page 164 of Linear Genetic Programming 2004
 	        int iPopulationSize=pop.PopulationSize;
 
-	        // Xianshun says:
+	        // CSChen says:
 	        // the program generated in this way will have program length as small as 
 	        // iMinProgLength and as large as iMaxProgLength
 	        // the program length is distributed uniformly between iMinProgLength and iMaxProgLength

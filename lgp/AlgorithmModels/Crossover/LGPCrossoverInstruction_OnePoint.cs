@@ -9,7 +9,7 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
     using CSChen.LGP.ComponentModels;
     using CSChen.Math.Distribution;
 
-    /* Xianshun says:
+    /* CSChen says:
        This operator is derived from Algorithm 5.2 in Section 5.7.2 of Linear Genetic Programming
     */
     public class LGPCrossoverInstruction_OnePoint : LGPCrossoverInstruction
@@ -26,36 +26,6 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
             mMaxDistanceOfCrossoverPoints = 1;
         }
 
-        public LGPCrossoverInstruction_OnePoint(XmlElement xml_level1)
-        {
-            foreach(XmlElement xml_level2 in xml_level1.ChildNodes)
-            {
-                if(xml_level2.Name=="param")
-                {
-                    string attrname=xml_level2.Attributes["name"].Value;
-                    string attrvalue=xml_level2.Attributes["value"].Value;
-                    if(attrname=="max_program_length")
-                    {
-                        int value=0;
-                        int.TryParse(attrvalue, out value);
-                        mMaxProgramLength=value;
-                    }
-                    else if (attrname == "min_program_length")
-                    {
-                        int value = 0;
-                        int.TryParse(attrvalue, out value);
-                        mMinProgramLength = value;
-                    }
-                    else if (attrname == "max_distance_of_crossover_points") 
-                    {
-                        int value = 0;
-                        int.TryParse(attrvalue, out value);
-                        mMaxDistanceOfCrossoverPoints = value;
-                    }
-                }
-            }
-        }
-
         public override LGPCrossoverInstruction Clone()
         {
             LGPCrossoverInstruction_OnePoint clone = new LGPCrossoverInstruction_OnePoint();
@@ -67,7 +37,7 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
 
         public override void Crossover(LGPPop pop, LGPProgram child1, LGPProgram child2)
         {
-            // Xianshun says:
+            // CSChen says:
             // this implementation is derived from Algorithm 5.1 in Section 5.7.1 of Linear
             // Genetic Programming
 

@@ -73,7 +73,7 @@ namespace CSChen.LGP.AlgorithmModels.Mutation
 
         public override void Mutate(LGPPop lgpPop, LGPProgram child)
         {
-            // Xianshun says:
+            // CSChen says:
 	        // This is derived from Algorithm 6.1 (Section 6.2.1) of Linear Genetic Programming
 	        // Macro instruction mutations either insert or delete a single instruction.
 	        // In doing so, they change absolute program length with minimum step size on the 

@@ -14,7 +14,7 @@ namespace CSChen.LGP.ComponentModels
     using AlgorithmModels.Survival;
     using CSChen.Math.Distribution;
 
-    /* Xianshun says:
+    /* CSChen says:
      Algorithm 2.1 (LGP algorithm)
      1. Initialize the population with random programs and calculate their fitness value
      2. Randomly select 2  nt individuals from the pouplation without replacement
@@ -29,7 +29,7 @@ namespace CSChen.LGP.ComponentModels
      Note that the population size stay fixed
     */
 
-    /* Xianshun says:
+    /* CSChen says:
      In step 5 of Algorithm 2.1, three different variation mechanism can be used to modify the two temporary copies of the tournament winners:
       1. crossover 
       2. macro mutation
@@ -37,7 +37,7 @@ namespace CSChen.LGP.ComponentModels
     These three variation mechanism can be applied in combination or one at a time to modify the two temporary copies of the tournament winners.
     */
 
-    /* Xianshun says:
+    /* CSChen says:
      The current model is based on steady-state LGP
      Regarding what is meant by a "generation" in steady-state LGP, I quote a paragraph from "Genetic Programming" by Wolfgang Banzhaf, Peter Nordin, Robert E. Keller, Frank D. Francone
      The steady-state GP models do not have distinct generations. Steady-state GP maintains the illusion of generations 

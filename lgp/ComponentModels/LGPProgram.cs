@@ -67,7 +67,7 @@ namespace CSChen.LGP.ComponentModels
                 Setup();
             }
 
-            // Xianshun says:
+            // CSChen says:
             // In this method, the instruction created is not garanteed to be structurally effective
             for (int i = 0; i < size; ++i)
             {
@@ -222,7 +222,7 @@ namespace CSChen.LGP.ComponentModels
            5. Stop. All unmarked instructions are introns.
            */
 
-            // Xianshun says:
+            // CSChen says:
             // this is a variant of Algorithm 3.1 that run Algorithm 3.1 until stop_point and return the Reff at that stage
 
             int instruction_count = mInstructions.Count;
@@ -296,7 +296,7 @@ namespace CSChen.LGP.ComponentModels
                 }
                 else
                 {
-                    // Xianshun says:
+                    // CSChen says:
                     // as suggested in Linear Genetic Programming
                     // the condictional construct is restricted to single condictional construct
                     // an example of single conditional construct would be
@@ -346,7 +346,7 @@ namespace CSChen.LGP.ComponentModels
                 }
                 else
                 {
-                    // Xianshun says:
+                    // CSChen says:
                     // as suggested in Linear Genetic Programming
                     // the condictional construct is restricted to single condictional construct
                     // an example of single conditional construct would be

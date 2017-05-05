@@ -9,11 +9,11 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
     using CSChen.LGP.ComponentModels;
     using CSChen.Math.Distribution;
 
-    /* Xianshun says:
+    /* CSChen says:
        This operator is derived from Algorithm 5.3 in Section 5.7.3 of Linear Genetic Programming
     */
 
-    /* Xianshun says: (From Section 5.7.3 of Linear Genetic Programming
+    /* CSChen says: (From Section 5.7.3 of Linear Genetic Programming
        Crossover requires, by definition, that information is exchanged between individual programs.
        However, an exchange always includes two operations on an individual, the deletion and
        the insertion of a subprogram. The imperative program representation allows instructions to be 
@@ -41,42 +41,6 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
             mMinProgramLength = 1;
             mMaxSegmentLength = 10;
             mInsertionProbability = 0.5;
-        }
-
-        public LGPCrossoverInstruction_OneSegment(XmlElement xml_level1)
-        {
-            foreach(XmlElement xml_level2 in xml_level1.ChildNodes)
-            {
-                if(xml_level2.Name=="param")
-                {
-                    string attrname=xml_level2.Attributes["name"].Value;
-                    string attrvalue=xml_level2.Attributes["value"].Value;
-                    if(attrname=="max_program_length")
-                    {
-                        int value=0;
-                        int.TryParse(attrvalue, out value);
-                        mMaxProgramLength=value;
-                    }
-                    else if (attrname == "min_program_length")
-                    {
-                        int value = 0;
-                        int.TryParse(attrvalue, out value);
-                        mMinProgramLength = value;
-                    }
-                    else if (attrname == "max_segment_length")
-                    {
-                        int value = 0;
-                        int.TryParse(attrvalue, out value);
-                        mMaxSegmentLength = value;
-                    }
-                    else if (attrname == "insertion_probability") 
-                    {
-                        double value = 0;
-                        double.TryParse(attrvalue, out value);
-                        mInsertionProbability = value;
-                    }
-                }
-            }
         }
 
         public override LGPCrossoverInstruction Clone()

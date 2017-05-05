@@ -2,69 +2,53 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
 namespace CSChen.LGP.AlgorithmModels.Crossover
 {
-    using System.Xml;
-    using CSChen.LGP.ComponentModels;
+    using ComponentModels;
 
     public class LGPCrossoverInstructionFactory
     {
-        private LGPCrossoverInstruction mCurrentCrossover;
-        private string mFilename;
+        private LGPCrossoverInstruction worker;
+        private readonly LGPSchema schema;
 
-        public LGPCrossoverInstructionFactory(string filename)
+        public LGPCrossoverInstructionFactory(LGPSchema schema)
         {
-            mFilename = filename;
-            XmlDocument doc = new XmlDocument();
-            doc.Load(filename);
-            XmlElement doc_root = doc.DocumentElement;
-            string selected_strategy = doc_root.Attributes["strategy"].Value;
-            foreach(XmlElement xml_level1 in doc_root.ChildNodes)
-            {
-                if (xml_level1.Name == "strategy")
-                {
-                    string attrname = xml_level1.Attributes["name"].Value;
-                    if (attrname == selected_strategy)
-                    {
-                        if (attrname == "linear")
-                        {
-                            mCurrentCrossover = new LGPCrossoverInstruction_Linear(xml_level1);
-                        }
-                        else if (attrname == "one_point")
-                        {
-                            mCurrentCrossover = new LGPCrossoverInstruction_OnePoint(xml_level1);
-                        }
-                        else if (attrname == "one_seg")
-                        {
-                            mCurrentCrossover = new LGPCrossoverInstruction_OneSegment(xml_level1);
-                        }
-                    }
-                }
-            }
+            this.schema = schema;
         }
 
         public virtual LGPCrossoverInstructionFactory Clone()
         {
-            LGPCrossoverInstructionFactory clone = new LGPCrossoverInstructionFactory(mFilename);
+            var clone = new LGPCrossoverInstructionFactory(schema);
             return clone;
         }
 
         public void Crossover(LGPPop pop, LGPProgram child1, LGPProgram child2)
         {
-            if (mCurrentCrossover != null)
+            if (worker == null)
             {
-                mCurrentCrossover.Crossover(pop, child1, child2);
+                LGPSchema.CrossoverType attrname = schema.Crossover;
+                if (attrname == LGPSchema.CrossoverType.linear)
+                {
+                    worker = new LGPCrossoverInstruction_Linear(schema);
+                }
+                else if (attrname == LGPSchema.CrossoverType.one_point)
+                {
+                    worker = new LGPCrossoverInstruction_OnePoint(schema);
+                }
+                else if (attrname == LGPSchema.CrossoverType.one_seg)
+                {
+                    worker = new LGPCrossoverInstruction_OneSegment(schema);
+                }
             }
-            else
-            {
-                throw new ArgumentNullException();
-            }
+            
+            worker.Crossover(pop, child1, child2);
         }
 
         public override string ToString()
         {
-            return mCurrentCrossover.ToString();
+            return worker.ToString();
         }
     }
 }
