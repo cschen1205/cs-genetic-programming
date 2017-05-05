@@ -3,112 +3,92 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSChen.LGP.AlgorithmModels.Selection
+namespace CSChen.LGP.ComponentModels
 {
-    using System.Xml;
-    using CSChen.LGP.ComponentModels;
-    using CSChen.Math.Distribution;
-
-    class LGPSelectionInstruction_Tournament : LGPSelectionInstruction
+    public class LGPOperatorSet
     {
-        private int mTournamentSize=5;
+        private List<KeyValuePair<LGPOperator, double>> mOperators=new List<KeyValuePair<LGPOperator, double>>();
+        private double mWeightSum=0;
 
-        public LGPSelectionInstruction_Tournament()
+        public LGPOperatorSet()
         {
 
         }
 
-        public LGPSelectionInstruction_Tournament(XmlElement xml_level1)
-            : base(xml_level1)
+        public LGPOperator FindRandomOperator(LGPOperator current_operator=null)
         {
-            foreach (XmlElement xml_level2 in xml_level1.ChildNodes)
+            for (int attempts = 0; attempts < 10; attempts++)
             {
-                if (xml_level2.Name == "param")
+                double r = mWeightSum * CSChen.Math.Distribution.DistributionModel.GetUniform();
+
+                double current_sum = 0;
+                foreach (KeyValuePair<LGPOperator, double> point in mOperators)
                 {
-                    string attrname = xml_level2.Attributes["name"].Value;
-                    string attrvalue = xml_level2.Attributes["value"].Value;
-                    if (attrname == "tournament_size")
+                    current_sum += point.Value;
+                    if (current_sum >= r)
                     {
-                        int value = 0;
-                        int.TryParse(attrvalue, out value);
-                        mTournamentSize = value;
+                        if (point.Key != current_operator)
+                        {
+                            return point.Key;
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
+
                 }
             }
+
+            return current_operator;
         }
 
-        public override LGPProgram Select(LGPPop pop)
+        public LGPOperator FindOperatorByIndex(int op_index)
         {
-            HashSet<LGPProgram> tournament=new HashSet<LGPProgram>();
-	        while(tournament.Count < mTournamentSize)
-	        {
-		        int r=DistributionModel.NextInt(pop.ProgramCount);
-		        tournament.Add(pop.FindProgramByIndex(r));
-	        }
-
-	        List<LGPProgram> programs=tournament.ToList();
-
-            programs=programs.OrderByDescending(o => o.Fitness).ToList();
-
-	        return programs[0];
+            return mOperators[op_index].Key;
         }
 
-        public override void Select(LGPPop pop, ref KeyValuePair<LGPProgram, LGPProgram> best_pair, ref KeyValuePair<LGPProgram, LGPProgram> worst_pair)
+        public LGPOperatorSet Clone()
         {
-            List<LGPProgram> tournament1=new List<LGPProgram>();
-	        List<LGPProgram> tournament2=new List<LGPProgram>();
-	        int tournament_size2=mTournamentSize * 2;
-	        if(tournament_size2 > pop.ProgramCount)
-	        {
-		        tournament_size2=pop.ProgramCount;
-		        int tournament_size=tournament_size2 / 2;
-		        pop.RandomShuffle();
-		        for(int i=0; i<tournament_size; i++)
-		        {
-			        tournament1.Add(pop.FindProgramByIndex(i));
-		        }
-		        for(int i=tournament_size; i<tournament_size2; i++)
-		        {
-			        tournament2.Add(pop.FindProgramByIndex(i));
-		        }
-	        }
-	        else
-	        {
-		        pop.RandomShuffle();
-		        for(int i=0; i<mTournamentSize; i++)
-		        {
-			        tournament1.Add(pop.FindProgramByIndex(i));
-		        }
-		        for(int i=mTournamentSize; i<tournament_size2; i++)
-		        {
-			        tournament2.Add(pop.FindProgramByIndex(i));
-		        }
-	        }	
+            LGPOperatorSet clone = new LGPOperatorSet();
+            clone.mWeightSum = mWeightSum;
+            foreach (KeyValuePair<LGPOperator, double> point in mOperators)
+            {
+                clone.mOperators.Add(new KeyValuePair<LGPOperator, double>(point.Key.Clone(), point.Value));
+            }
 
-            tournament1=tournament1.OrderByDescending(o=>o.Fitness).ToList();
-            tournament2=tournament2.OrderByDescending(o=>o.Fitness).ToList();
-
-            //Console.WriteLine("tournament 1: {0}", tournament1.Count);
-            //Console.WriteLine("tournament 2: {0}", tournament2.Count);
-
-	        best_pair=new KeyValuePair<LGPProgram, LGPProgram>(tournament1[0], tournament2[0]);
-	        worst_pair=new KeyValuePair<LGPProgram, LGPProgram>(tournament1[tournament1.Count-1], tournament2[tournament2.Count-1]);
-        }
-
-        public override LGPSelectionInstruction Clone()
-        {
-            LGPSelectionInstruction_Tournament clone = new LGPSelectionInstruction_Tournament();
-            clone.mTournamentSize = mTournamentSize;
             return clone;
+        }
+
+        public int OperatorCount
+        {
+            get { return mOperators.Count; }
+        }
+
+        public void AddOperator(LGPOperator op, double weight=1)
+        {
+            mOperators.Add(new KeyValuePair<LGPOperator, double>(op, weight));
+            op.mOperatorIndex = mOperators.Count - 1;
+            mWeightSum += weight;
+        }
+
+        public void AddIfltOperator(double weight = 1)
+        {
+            AddOperator(new Operators.LGPOperator_Iflt(), weight);
+        }
+
+        public void AddIfgtOperator(double weight = 1)
+        {
+            AddOperator(new Operators.LGPOperator_Ifgt(), weight);
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-
-            sb.AppendLine(">> Name: LGPSelectionInstruction_Tournament");
-	        sb.AppendFormat(">> Tournament Size: {0}", mTournamentSize);
-
+            for (int i = 0; i < mOperators.Count; ++i)
+            {
+                sb.AppendFormat("operators[{0}]: {1}\n", i, mOperators[i].Key);
+            }
             return sb.ToString();
         }
     }

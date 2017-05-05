@@ -9,63 +9,53 @@ namespace CSChen.LGP.AlgorithmModels.RegInit
     using CSChen.LGP.ComponentModels;
     using CSChen.LGP.ProblemModels;
 
-    public class LGPRegInitInstructionFactory
+    class LGPRegInitInstruction_CompleteInputInitReg : LGPRegInitInstruction
     {
-        private string mFilename;
-        private LGPRegInitInstruction mCurrentInstruction;
 
-        public LGPRegInitInstructionFactory(string filename)
+        public LGPRegInitInstruction_CompleteInputInitReg()
         {
-            mFilename = filename;
-            XmlDocument doc = new XmlDocument();
-            doc.Load(mFilename);
-            XmlElement doc_root = doc.DocumentElement;
-            string selected_strategy = doc_root.Attributes["strategy"].Value;
-            foreach (XmlElement xml_level1 in doc_root.ChildNodes)
-            {
-                if (xml_level1.Name == "strategy")
-                {
-                    string attrname = xml_level1.Attributes["name"].Value;
-                    if (attrname == selected_strategy)
-                    {
-                        if (attrname == "initialize_register_with_input")
-                        {
-                            mCurrentInstruction = new LGPRegInitInstruction_Standard(xml_level1);
-                        }
-                        else if (attrname == "complete_initialization_of_register_with_input")
-                        {
-                            mCurrentInstruction = new LGPRegInitInstruction_CompleteInputInitReg(xml_level1);
-                        }
-                    }
-                }
-            }
+
         }
 
-        public virtual LGPRegInitInstructionFactory Clone()
+        public LGPRegInitInstruction_CompleteInputInitReg(XmlElement xml_level1)
+            : base(xml_level1)
         {
-            LGPRegInitInstructionFactory clone = new LGPRegInitInstructionFactory(mFilename);
+            
+        }
+
+        public override void InitializeRegisters(LGPRegisterSet reg_set, LGPConstantSet constant_set, LGPFitnessCase fitness_case)
+        {
+            int iRegisterCount=reg_set.RegisterCount;
+	        int iInputCount=fitness_case.GetInputCount();
+
+
+	        int iRegisterIndex=0;
+	        while(iRegisterIndex < iRegisterCount)
+	        {
+		        for(int j=0; j<iInputCount; ++j, ++iRegisterIndex)
+		        {
+			        if(iRegisterIndex >= iRegisterCount)
+			        {
+				        break;
+			        }
+
+			        double value;
+			        fitness_case.QueryInput(j, out value);
+			        reg_set.FindRegisterByIndex(iRegisterIndex).Value=value;
+		        }
+	        }
+
+        }
+
+        public override LGPRegInitInstruction Clone()
+        {
+            LGPRegInitInstruction_CompleteInputInitReg clone = new LGPRegInitInstruction_CompleteInputInitReg();
             return clone;
-        }
-
-        public virtual void InitializeRegisters(LGPRegisterSet reg_set, LGPConstantSet constant_set, LGPFitnessCase fitness_case)
-        {
-            if (mCurrentInstruction != null)
-            {
-                mCurrentInstruction.InitializeRegisters(reg_set, constant_set, fitness_case);
-            }
-            else
-            {
-                throw new ArgumentNullException();
-            }
         }
 
         public override string ToString()
         {
-            if (mCurrentInstruction != null)
-            {
-                return mCurrentInstruction.ToString();
-            }
-            return "LGP Reg Init Instruction Factory";
+            return ">> Name: LGPRegInitInstruction_CompleteInputInitReg";
         }
     }
 }

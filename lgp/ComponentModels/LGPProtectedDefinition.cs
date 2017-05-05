@@ -3,73 +3,61 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSChen.LGP.AlgorithmModels.Selection
+namespace CSChen.LGP.ComponentModels
 {
-    using System.Xml;
-    using CSChen.LGP.ComponentModels;
-
-    public class LGPSelectionInstructionFactory
+    public class LGPProtectedDefinition
     {
-        private string mFilename;
-        private LGPSelectionInstruction mCurrentInstruction;
+        private static LGPProtectedDefinition mInstance = null;
+        private static object mSyncObj = new object();
 
-        public LGPSelectionInstructionFactory(string filename)
+        private bool mUseUndefinedLow = true;
+        private double mLGP_REG_POSITIVE_INF = 10000000;
+        private double mLGP_REG_NEGATIVE_INF = -10000000;
+        private double mUndefinedLow=1;
+        private double mUndefinedHigh = 1000000;
+
+        public double LGP_REG_POSITIVE_INF
         {
-            mFilename = filename;
-            XmlDocument doc = new XmlDocument();
-            doc.Load(mFilename);
-            XmlElement doc_root = doc.DocumentElement;
-            string selected_strategy = doc_root.Attributes["strategy"].Value;
-            foreach (XmlElement xml_level1 in doc_root.ChildNodes)
+            get { return mLGP_REG_POSITIVE_INF; }
+        }
+
+        public double LGP_REG_NEGATIVE_INF
+        {
+            get { return mLGP_REG_NEGATIVE_INF; }
+        }
+
+        public double UNDEFINED
+        {
+            get
             {
-                if (xml_level1.Name == "strategy")
+                if (mUseUndefinedLow)
                 {
-                    string attrname = xml_level1.Attributes["name"].Value;
-                    if (attrname == selected_strategy)
+                    return mUndefinedLow;
+                }
+                return mUndefinedHigh;
+            }
+        }
+
+        private LGPProtectedDefinition()
+        {
+
+        }
+
+        public static LGPProtectedDefinition Instance
+        {
+            get
+            {
+                if (mInstance == null)
+                {
+                    lock (mSyncObj)
                     {
-                        if (attrname == "tournament")
-                        {
-                            mCurrentInstruction = new LGPSelectionInstruction_Tournament(xml_level1);
-                        }
+                        mInstance = new LGPProtectedDefinition();
                     }
                 }
+                return mInstance;
             }
         }
 
-        public virtual LGPSelectionInstructionFactory Clone()
-        {
-            LGPSelectionInstructionFactory clone = new LGPSelectionInstructionFactory(mFilename);
-            return clone;
-        }
 
-        public virtual void Select(LGPPop pop, ref KeyValuePair<LGPProgram, LGPProgram> best_pair, ref KeyValuePair<LGPProgram, LGPProgram> worst_pair)
-        {
-            if (mCurrentInstruction != null)
-            {
-                mCurrentInstruction.Select(pop, ref best_pair, ref worst_pair);
-            }
-            else
-            {
-                throw new ArgumentNullException();
-            }
-        }
-
-        public virtual LGPProgram Select(LGPPop pop)
-        {
-            if (mCurrentInstruction != null)
-            {
-                return mCurrentInstruction.Select(pop);
-            }
-            return null;
-        }
-
-        public override string ToString()
-        {
-            if (mCurrentInstruction != null)
-            {
-                return mCurrentInstruction.ToString();
-            }
-            return "LGP Selection Instruction Factory";
-        }
     }
 }

@@ -10,40 +10,23 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
     using CSChen.Math.Distribution;
 
     /* Xianshun says:
-       This operator is derived from Algorithm 5.3 in Section 5.7.3 of Linear Genetic Programming
+       This operator is derived from Algorithm 5.2 in Section 5.7.2 of Linear Genetic Programming
     */
-
-    /* Xianshun says: (From Section 5.7.3 of Linear Genetic Programming
-       Crossover requires, by definition, that information is exchanged between individual programs.
-       However, an exchange always includes two operations on an individual, the deletion and
-       the insertion of a subprogram. The imperative program representation allows instructions to be 
-       deleted without replacement since instructon operands, e.g. register pointers, are always defined.
-       Instructions may also be inserted at any position without a preceding deletion, at least if the maximum 
-       program length is not exceeded. 
-
-       If we want linear crossover to be less disruptive it may be a good idea to execute only one operation per
-       individual. this consideration motivates a one-segment or one-way recombination of linear genetic
-       programs as described by Algorithm 5.3.
-
-       Standard linear crossover may also be refered to as two-segment recombinations, in these terms.
-    */
-    public class LGPCrossoverInstruction_OneSegment : LGPCrossoverInstruction
+    public class LGPCrossoverInstruction_OnePoint : LGPCrossoverInstruction
     {
         private int mMaxProgramLength;
         private int mMinProgramLength;
-        private int mMaxSegmentLength;
-        private double mInsertionProbability;
+        private int mMaxDistanceOfCrossoverPoints;
 
-        public LGPCrossoverInstruction_OneSegment()
+        public LGPCrossoverInstruction_OnePoint()
             : base()
         {
-            mMaxProgramLength = 200;
+            mMaxProgramLength = 100;
             mMinProgramLength = 1;
-            mMaxSegmentLength = 10;
-            mInsertionProbability = 0.5;
+            mMaxDistanceOfCrossoverPoints = 1;
         }
 
-        public LGPCrossoverInstruction_OneSegment(XmlElement xml_level1)
+        public LGPCrossoverInstruction_OnePoint(XmlElement xml_level1)
         {
             foreach(XmlElement xml_level2 in xml_level1.ChildNodes)
             {
@@ -63,17 +46,11 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
                         int.TryParse(attrvalue, out value);
                         mMinProgramLength = value;
                     }
-                    else if (attrname == "max_segment_length")
+                    else if (attrname == "max_distance_of_crossover_points") 
                     {
                         int value = 0;
                         int.TryParse(attrvalue, out value);
-                        mMaxSegmentLength = value;
-                    }
-                    else if (attrname == "insertion_probability") 
-                    {
-                        double value = 0;
-                        double.TryParse(attrvalue, out value);
-                        mInsertionProbability = value;
+                        mMaxDistanceOfCrossoverPoints = value;
                     }
                 }
             }
@@ -81,9 +58,8 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
 
         public override LGPCrossoverInstruction Clone()
         {
-            LGPCrossoverInstruction_OneSegment clone = new LGPCrossoverInstruction_OneSegment();
-            clone.mMaxSegmentLength = mMaxSegmentLength;
-            clone.mInsertionProbability = mInsertionProbability;
+            LGPCrossoverInstruction_OnePoint clone = new LGPCrossoverInstruction_OnePoint();
+            clone.mMaxDistanceOfCrossoverPoints = mMaxDistanceOfCrossoverPoints;
             clone.mMaxProgramLength = mMaxProgramLength;
             clone.mMinProgramLength = mMinProgramLength;
             return clone;
@@ -91,59 +67,134 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
 
         public override void Crossover(LGPPop pop, LGPProgram child1, LGPProgram child2)
         {
-            CrossoverOneSegment(child1, child2);
-            CrossoverOneSegment(child2, child1);
-        }
+            // Xianshun says:
+            // this implementation is derived from Algorithm 5.1 in Section 5.7.1 of Linear
+            // Genetic Programming
 
-        private void CrossoverOneSegment(LGPProgram gp1, LGPProgram gp2)
-        {
-            double prob_r = DistributionModel.GetUniform();
-            if((gp1.InstructionCount < mMaxProgramLength) && ((prob_r <= mInsertionProbability || gp1.InstructionCount==mMinProgramLength)))
+            LGPProgram gp1 = child1;
+            LGPProgram gp2 = child2;
+
+            // length(gp1) <= length(gp2)
+            if (gp1.InstructionCount > gp2.InstructionCount)
             {
-                int i1=DistributionModel.NextInt(gp1.InstructionCount);
-                int max_segment_length=gp2.InstructionCount < mMaxSegmentLength ? gp2.InstructionCount : mMaxSegmentLength;
-                int ls2=1+DistributionModel.NextInt(max_segment_length);
-                if(gp1.InstructionCount+ls2 > mMaxProgramLength)
-                {
-                    ls2=mMaxProgramLength-gp1.InstructionCount;
-                }
-                int i2=DistributionModel.NextInt(gp2.InstructionCount-ls2);
-                
-                List<LGPInstruction> instructions1=gp1.Instructions;
-                List<LGPInstruction> instructions2=gp2.Instructions;
-
-                List<LGPInstruction> s=new List<LGPInstruction>();
-		        for(int i=i2; i != (i2+ls2); ++i)
-		        {
-                    LGPInstruction instruction=instructions2[i];
-			        LGPInstruction instruction_cloned=instruction.Clone();
-			        instruction_cloned.Program=gp1;
-			        s.Add(instruction_cloned);
-		        }
-
-		        instructions1.InsertRange(i1, s.AsEnumerable());
+                gp1 = child2;
+                gp2 = child1;
             }
 
-            if((gp1.InstructionCount > mMinProgramLength) && ((prob_r > mInsertionProbability) || gp1.InstructionCount == mMaxProgramLength))
-	        {
-		        int max_segment_length=(gp2.InstructionCount < mMaxSegmentLength) ? gp2.InstructionCount : mMaxSegmentLength;
-		        int ls1=1+DistributionModel.NextInt(max_segment_length);
+            int max_distance_of_crossover_points = (gp1.InstructionCount - 1) < mMaxDistanceOfCrossoverPoints ? mMaxDistanceOfCrossoverPoints : (gp1.InstructionCount - 1);
 
-		        if(gp1.InstructionCount < ls1)
-		        {
-			        ls1=gp1.InstructionCount - mMinProgramLength;
-		        }
-		        else if(gp1.InstructionCount - ls1 < mMinProgramLength)
-		        {
-			        ls1=gp1.InstructionCount - mMinProgramLength;
-		        }
-		        int i1=DistributionModel.NextInt(gp1.InstructionCount-ls1);
-		        List<LGPInstruction> instructions1=gp1.Instructions;
+            int i1 = DistributionModel.NextInt(gp1.InstructionCount);
+            int i2 = DistributionModel.NextInt(gp2.InstructionCount);
 
-                instructions1.RemoveRange(i1, ls1);
-	        }
+            int crossover_point_distance = (i1 > i2) ? (i1 - i2) : (i2 - i1);
 
-	        gp1.TrashFitness();
+            int ls1 = gp1.InstructionCount - i1;
+            int ls2 = gp2.InstructionCount - i2;
+
+            // 1. assure abs(i1-i2) <= max_distance_of_crossover_points
+	        // 2. assure l(s1) <= l(s2)
+	        bool not_feasible=true;
+            while (not_feasible)
+            {
+                not_feasible = false;
+                // ensure that the maximum distance between two crossover points is not exceeded
+                if (crossover_point_distance > max_distance_of_crossover_points)
+                {
+                    not_feasible = true;
+                    i1 = DistributionModel.NextInt(gp1.InstructionCount);
+                    i2 = DistributionModel.NextInt(gp2.InstructionCount);
+                    crossover_point_distance = (i1 > i2) ? (i1 - i2) : (i2 - i1);
+                }
+                else
+                {
+                    ls1 = gp1.InstructionCount - i1;
+                    ls2 = gp2.InstructionCount - i2;
+                    // assure than l(s1) <= l(s2)
+                    if (ls1 > ls2)
+                    {
+                        not_feasible = true;
+                        i1 = DistributionModel.NextInt(gp1.InstructionCount);
+                        i2 = DistributionModel.NextInt(gp2.InstructionCount);
+                        crossover_point_distance = (i1 > i2) ? (i1 - i2) : (i2 - i1);
+                    }
+                    else
+                    {
+                        // assure the length of the program after crossover do not exceed the maximum program length or below minimum program length
+                        if ((gp2.InstructionCount - (ls2 - ls1)) < mMinProgramLength || (gp1.InstructionCount + (ls2 - ls1)) > mMaxProgramLength)
+                        {
+                            not_feasible = true;
+                            // when the length constraint is not satisfied, make the segments to be exchanged the same length
+                            if (gp1.InstructionCount >= gp2.InstructionCount)
+                            {
+                                i1 = i2;
+                            }
+                            else
+                            {
+                                i2 = i1;
+                            }
+                            crossover_point_distance = 0;
+                        }
+                        else
+                        {
+                            not_feasible = false;
+                        }
+                    }
+                }
+
+                List<LGPInstruction> instructions1 = gp1.Instructions;
+                List<LGPInstruction> instructions2 = gp2.Instructions;
+
+                List<LGPInstruction> instructions1_1 = new List<LGPInstruction>();
+                List<LGPInstruction> instructions1_2 = new List<LGPInstruction>();
+
+                List<LGPInstruction> instructions2_1 = new List<LGPInstruction>();
+                List<LGPInstruction> instructions2_2 = new List<LGPInstruction>();
+
+                for (int i = 0; i < i1; ++i)
+                {
+                    instructions1_1.Add(instructions1[i]);
+                }
+                for (int i = i1; i < instructions1.Count; ++i)
+                {
+                    instructions1_2.Add(instructions1[i]);
+                }
+
+                for (int i = 0; i < i2; ++i)
+                {
+                    instructions2_1.Add(instructions2[i]);
+                }
+                for (int i = i2; i < instructions2.Count; ++i)
+                {
+                    instructions2_2.Add(instructions2[i]);
+                }
+
+                instructions1.Clear();
+                instructions2.Clear();
+
+                for (int i = 0; i < i1; ++i)
+                {
+                    instructions1.Add(instructions1_1[i]);
+                }
+                for (int i = 0; i < instructions2_2.Count; ++i)
+                {
+                    instructions1.Add(instructions2_2[i]);
+                    instructions2_2[i].Program = gp1;
+                }
+
+                for (int i = 0; i < i2; ++i)
+                {
+                    instructions2.Add(instructions2_1[i]);
+                }
+
+                for (int i = 0; i < instructions1_2.Count; ++i)
+                {
+                    instructions2.Add(instructions1_2[i]);
+                    instructions1_2[i].Program = gp2;
+                }
+
+                gp1.TrashFitness();
+                gp2.TrashFitness();
+            }
         }
 
         public override string ToString()
@@ -152,8 +203,7 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
             sb.Append(">> Name: LGPCrossoverInstruction_Linear\n");
             sb.AppendFormat(">> Max Program Length: {0}\n", mMaxProgramLength);
             sb.AppendFormat(">> Min Program Length: {0}\n", mMinProgramLength);
-            sb.AppendFormat(">> Max Segment Length: {0}\n", mMaxSegmentLength);
-            sb.AppendFormat(">> Insertion Probability: {0}", mInsertionProbability);
+            sb.AppendFormat(">> Max Distance of Crossover Points: {0}", mMaxDistanceOfCrossoverPoints);
 
             return sb.ToString();
         }
