@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
 namespace CSChen.LGP.AlgorithmModels.Crossover
 {
@@ -24,6 +25,13 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
             mMaxProgramLength = 100;
             mMinProgramLength = 1;
             mMaxDistanceOfCrossoverPoints = 1;
+        }
+
+        public LGPCrossoverInstruction_OnePoint(LGPSchema lgp)
+        {
+            mMaxProgramLength = lgp.MaxProgramLength;
+            mMinProgramLength = lgp.MinProgramLength;
+            mMaxDistanceOfCrossoverPoints = lgp.MaxDistanceOfCrossoverPoints;
         }
 
         public override LGPCrossoverInstruction Clone()
