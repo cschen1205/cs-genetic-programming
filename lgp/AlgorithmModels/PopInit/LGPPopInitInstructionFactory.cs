@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
 namespace LGP.AlgorithmModels.PopInit
 {
@@ -12,31 +13,20 @@ namespace LGP.AlgorithmModels.PopInit
     {
         private string mFilename;
         private LGPPopInitInstruction mCurrentInstruction;
+        private LGPSchema schema;
 
-        public LGPPopInitInstructionFactory(string filename)
+        public LGPPopInitInstructionFactory(LGPSchema lgp)
         {
-            mFilename = filename;
-            XmlDocument doc = new XmlDocument();
-            doc.Load(mFilename);
-            XmlElement doc_root = doc.DocumentElement;
-            string selected_strategy = doc_root.Attributes["strategy"].Value;
-            foreach (XmlElement xml_level1 in doc_root.ChildNodes)
+            LGPSchema.PopInitType attrname = lgp.PopInit;
+
+            switch (attrname)
             {
-                if (xml_level1.Name == "strategy")
-                {
-                    string attrname = xml_level1.Attributes["name"].Value;
-                    if (attrname == selected_strategy)
-                    {
-                        if (attrname == "variable_length")
-                        {
-                            mCurrentInstruction = new LGPPopInitInstruction_VariableLength(xml_level1);
-                        }
-                        else if (attrname == "constant_length")
-                        {
-                            mCurrentInstruction = new LGPPopInitInstruction_ConstantLength(xml_level1);
-                        }
-                    }
-                }
+                case LGPSchema.PopInitType.variable_length:
+                    mCurrentInstruction = new LGPPopInitInstruction_VariableLength(lgp);
+                    break;
+                case LGPSchema.PopInitType.constant_length:
+                    mCurrentInstruction = new LGPPopInitInstruction_ConstantLength(lgp);
+                    break;
             }
         }
 

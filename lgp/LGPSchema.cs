@@ -11,8 +11,15 @@ namespace lgp
             one_seg
         }
 
+        public enum PopInitType
+        {
+            variable_length,
+            constant_length
+        }
+
 
         public CrossoverType Crossover = CrossoverType.linear;
+        public PopInitType PopInit { get; set; } = PopInitType.variable_length;;
 
         public int MaxDifferenceOfSegmentLength { get; set; } = 10;
         public int MaxProgramLength { get; set; } = 100;
@@ -23,5 +30,7 @@ namespace lgp
         public double MacroMutateInsertionRate { get; set; } = 0.5;
         public double MacroMutationDeletionRate { get; set; } = 0.5;
         public bool EffectiveMutation { get; set; } = false;
+
+
     }
 }
