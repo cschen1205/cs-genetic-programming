@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
 namespace CSChen.LGP.AlgorithmModels.Crossover
 {
@@ -42,6 +43,14 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
             mMaxSegmentLength = 10;
             mInsertionProbability = 0.5;
         }
+
+	    public LGPCrossoverInstruction_OneSegment(LGPSchema lgp)
+	    {
+		    mMaxProgramLength = lgp.MaxProgramLength;
+		    mMinProgramLength = lgp.MinProgramLength;
+		    mMaxSegmentLength = lgp.MaxSegmentLength;
+		    mInsertionProbability = lgp.InsertionProbabilityInCrossover;
+	    }
 
         public override LGPCrossoverInstruction Clone()
         {

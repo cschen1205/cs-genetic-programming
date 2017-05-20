@@ -18,5 +18,6 @@ namespace lgp
         public int MinProgramLength { get; set; } = 20;
         public int MaxSegmentLength { get; set; } = 10;
         public int MaxDistanceOfCrossoverPoints { get; set; } = 5;
+        public double InsertionProbabilityInCrossover { get; set; } = 0.5;
     }
 }
