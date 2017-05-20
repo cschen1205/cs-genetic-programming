@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using lgp;
 
-namespace CSChen.LGP.AlgorithmModels.Crossover
+namespace LGP.AlgorithmModels.Crossover
 {
-    using CSChen.LGP.ComponentModels;
-    using CSChen.Math.Distribution;
+    using LGP.ComponentModels;
+    using Math.Distribution;
 
     // CSChen says:
     // this is derived from Algorithm 5.1 of Section 5.7.1 of Linear Genetic Programming

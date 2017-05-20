@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CSChen.Math.Helpers;
+using Math.Helpers;
 
-namespace CSChen.Math.SpecialFunctions
+namespace maths.SpecialFunctions
 {
     public class GammaFunction
     {

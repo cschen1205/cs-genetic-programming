@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using lgp;
 
-namespace CSChen.LGP.AlgorithmModels.Crossover
+namespace LGP.AlgorithmModels.Crossover
 {
     using System.Xml;
-    using CSChen.LGP.ComponentModels;
-    using CSChen.Math.Distribution;
+    using LGP.ComponentModels;
+    using Math.Distribution;
 
     /* CSChen says:
        This operator is derived from Algorithm 5.2 in Section 5.7.2 of Linear Genetic Programming

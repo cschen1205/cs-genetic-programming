@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSChen.LGP.AlgorithmModels.RegInit
+namespace LGP.AlgorithmModels.RegInit
 {
     using System.Xml;
-    using CSChen.LGP.ComponentModels;
-    using CSChen.LGP.ProblemModels;
+    using LGP.ComponentModels;
+    using LGP.ProblemModels;
 
     public abstract class LGPRegInitInstruction
     {

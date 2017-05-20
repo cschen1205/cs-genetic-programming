@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSChen.LGP.AlgorithmModels.PopInit
+namespace LGP.AlgorithmModels.PopInit
 {
     using System.Xml;
-    using CSChen.LGP.ComponentModels;
+    using LGP.ComponentModels;
 
     class LGPPopInitInstruction_ConstantLength : LGPPopInitInstruction
     {

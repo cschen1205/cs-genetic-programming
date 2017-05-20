@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSChen.LGP.ComponentModels.Operators
+namespace LGP.ComponentModels.Operators
 {
     /// <summary>
     ///  this operator implements the "If greater than" instruction

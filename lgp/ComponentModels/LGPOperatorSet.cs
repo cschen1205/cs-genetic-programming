@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSChen.LGP.ComponentModels
+namespace LGP.ComponentModels
 {
     public class LGPOperatorSet
     {
@@ -19,7 +19,7 @@ namespace CSChen.LGP.ComponentModels
         {
             for (int attempts = 0; attempts < 10; attempts++)
             {
-                double r = mWeightSum * CSChen.Math.Distribution.DistributionModel.GetUniform();
+                double r = mWeightSum * Math.Distribution.DistributionModel.GetUniform();
 
                 double current_sum = 0;
                 foreach (KeyValuePair<LGPOperator, double> point in mOperators)

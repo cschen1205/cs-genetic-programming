@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CSChen.Math.Helpers;
+using Math.Helpers;
 
-namespace CSChen.Math.Distribution
+namespace maths.Distribution
 {
     /// <summary>
     /// Class representing a random number generator based on Erlang distribution Erlang(\f$k\f$, \f$\lambda\f$).

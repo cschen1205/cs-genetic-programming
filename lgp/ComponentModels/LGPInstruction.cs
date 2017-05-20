@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSChen.LGP.ComponentModels
+namespace LGP.ComponentModels
 {
     public class LGPInstruction
     {
@@ -30,7 +30,7 @@ namespace CSChen.LGP.ComponentModels
             mOperator = mProgram.OperatorSet.FindRandomOperator();
 
             double p_const = 0.5;
-            double r = CSChen.Math.Distribution.DistributionModel.GetUniform();
+            double r = Math.Distribution.DistributionModel.GetUniform();
             if (r < p_const)
             {
                 mOperand1 = mProgram.ConstantSet.FindRandomRegister();
@@ -45,7 +45,7 @@ namespace CSChen.LGP.ComponentModels
             }
             else
             {
-                r = CSChen.Math.Distribution.DistributionModel.GetUniform();
+                r = Math.Distribution.DistributionModel.GetUniform();
                 if (r < p_const)
                 {
                     mOperand2 = mProgram.ConstantSet.FindRandomRegister();
@@ -159,14 +159,14 @@ namespace CSChen.LGP.ComponentModels
 
         public virtual void MutateRegister(double p_const = 0.5)
         {
-            double r = CSChen.Math.Distribution.DistributionModel.GetUniform();
+            double r = Math.Distribution.DistributionModel.GetUniform();
             if (r < 0.5)
             {
                 mDestinationRegister = mProgram.RegisterSet.FindRandomRegister(mDestinationRegister);
             }
             else
             {
-                r = CSChen.Math.Distribution.DistributionModel.GetUniform();
+                r = Math.Distribution.DistributionModel.GetUniform();
                 LGPRegister arg1, arg2;
                 if (r < 0.5)
                 {
@@ -185,7 +185,7 @@ namespace CSChen.LGP.ComponentModels
                 }
                 else
                 {
-                    r = CSChen.Math.Distribution.DistributionModel.GetUniform();
+                    r = Math.Distribution.DistributionModel.GetUniform();
                     if (r < p_const)
                     {
                         arg1 = mProgram.ConstantSet.FindRandomRegister();
@@ -201,7 +201,7 @@ namespace CSChen.LGP.ComponentModels
             }
         }
 
-        public virtual void MutateConstant(CSChen.Math.Distribution.Gaussian gauss, double standard_deviation)
+        public virtual void MutateConstant(Math.Distribution.Gaussian gauss, double standard_deviation)
         {
             if (mOperand1.IsConstant)
             {

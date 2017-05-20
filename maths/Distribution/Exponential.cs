@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSChen.Math.Distribution
+namespace maths.Distribution
 {
     /// <summary>
     /// Class representing a random number generator Exponential(\f$\lambda\f$).

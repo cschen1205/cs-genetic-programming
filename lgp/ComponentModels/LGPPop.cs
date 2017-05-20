@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LGP.AlgorithmModels.Crossover;
+using LGP.AlgorithmModels.Mutation;
+using LGP.AlgorithmModels.PopInit;
+using LGP.AlgorithmModels.RegInit;
+using LGP.AlgorithmModels.Selection;
+using LGP.AlgorithmModels.Survival;
+using LGP.ProblemModels;
+using maths.Distribution;
 
-namespace CSChen.LGP.ComponentModels
+namespace LGP.ComponentModels
 {
-    using ProblemModels;
-    using AlgorithmModels.Crossover;
-    using AlgorithmModels.Mutation;
-    using AlgorithmModels.PopInit;
-    using AlgorithmModels.RegInit;
-    using AlgorithmModels.Selection;
-    using AlgorithmModels.Survival;
-    using CSChen.Math.Distribution;
 
     /* CSChen says:
      Algorithm 2.1 (LGP algorithm)

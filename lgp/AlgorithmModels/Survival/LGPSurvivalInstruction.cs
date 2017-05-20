@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSChen.LGP.AlgorithmModels.Survival
+namespace LGP.AlgorithmModels.Survival
 {
     using System.Xml;
-    using CSChen.LGP.ComponentModels;
+    using LGP.ComponentModels;
 
     public abstract class LGPSurvivalInstruction
     {

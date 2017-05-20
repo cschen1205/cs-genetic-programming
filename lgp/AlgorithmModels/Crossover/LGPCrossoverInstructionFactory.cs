@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using lgp;
 
-namespace CSChen.LGP.AlgorithmModels.Crossover
+namespace LGP.AlgorithmModels.Crossover
 {
     using ComponentModels;
 

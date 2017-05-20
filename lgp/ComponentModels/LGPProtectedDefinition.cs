@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSChen.LGP.ComponentModels
+namespace LGP.ComponentModels
 {
     public class LGPProtectedDefinition
     {

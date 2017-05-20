@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSChen.Math.Helpers
+namespace maths.Helpers
 {
     public static class LogHelper
     {

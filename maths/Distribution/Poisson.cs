@@ -6,10 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CSChen.Math.SpecialFunctions;
-using CSChen.Math.Helpers;
+using Math.SpecialFunctions;
+using Math.Helpers;
 
-namespace CSChen.Math.Distribution
+namespace maths.Distribution
 {
     /// <summary>
     /// Class representing a random number generator based on Guassian Distribution Guassian(\f$\mu\f$, \f$\sigma\f$)

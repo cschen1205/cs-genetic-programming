@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSChen.LGP.ComponentModels
+namespace LGP.ComponentModels
 {
     public class LGPRegister
     {
@@ -42,7 +42,7 @@ namespace CSChen.LGP.ComponentModels
             return clone;
         }
         
-        public virtual void Mutate(CSChen.Math.Distribution.Gaussian gaussian, double standard_deviation)
+        public virtual void Mutate(Math.Distribution.Gaussian gaussian, double standard_deviation)
         {
             mValue+=gaussian.GetNormal() * standard_deviation;
         }

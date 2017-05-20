@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-/*! \mainpage CSChen.Math Source Code Documentation
+/*! \mainpage Math Source Code Documentation
  *
- * CSChen.Math provides the math functions to be used in various simulation, machine learning, mining, and optimization package in the CSChen framework
+ * Math provides the math functions to be used in various simulation, machine learning, mining, and optimization package in the CSChen framework
  *
  * The library currently contains a set of random number generator with various distribution models which includes:
  * <ol>
@@ -22,7 +22,7 @@ using System.Text;
  * </ol>
  */
 
-namespace CSChen.Math.Distribution
+namespace maths.Distribution
 {
     /// <summary>
     /// Class that serves as the base class for various random number generator, it also serves as the utility class for random number generation using uniform random distribution

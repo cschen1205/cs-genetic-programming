@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSChen.LGP.AlgorithmModels.Crossover
+namespace LGP.AlgorithmModels.Crossover
 {
     using System.Xml;
-    using CSChen.LGP.ComponentModels;
+    using LGP.ComponentModels;
     public abstract class LGPCrossoverInstruction
     {
         public LGPCrossoverInstruction()

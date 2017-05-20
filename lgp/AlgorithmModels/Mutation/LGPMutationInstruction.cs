@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSChen.LGP.AlgorithmModels.Mutation
+﻿namespace LGP.AlgorithmModels.Mutation
 {
-    using System.Xml;
-    using CSChen.LGP.ComponentModels;
+    using ComponentModels;
 
     public abstract class LGPMutationInstruction
     {

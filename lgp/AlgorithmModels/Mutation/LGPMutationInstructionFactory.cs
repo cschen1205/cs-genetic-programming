@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
-namespace CSChen.LGP.AlgorithmModels.Mutation
+namespace LGP.AlgorithmModels.Mutation
 {
-    using System.Xml;
-    using CSChen.LGP.ComponentModels;
+    using LGP.ComponentModels;
 
     public class LGPMutationInstructionFactory
     {
         private string mFilename;
         private LGPMutationInstruction mCurrentMacroMutation;
 
-        public LGPMutationInstructionFactory(string filename)
+        public LGPMutationInstructionFactory(LGPSchema)
         {
             mFilename = filename;
             XmlDocument doc = new XmlDocument();

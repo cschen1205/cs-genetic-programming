@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CSChen.Math.SpecialFunctions;
+using Math.SpecialFunctions;
 
-namespace CSChen.Math.Distribution
+namespace maths.Distribution
 {
     /// <summary>
     /// Class representing a random number generator based on LogNormal distribution 
