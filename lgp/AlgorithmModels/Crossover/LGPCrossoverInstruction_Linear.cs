@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using lgp;
 
 namespace CSChen.LGP.AlgorithmModels.Crossover
 {
-    using System.Xml;
     using CSChen.LGP.ComponentModels;
     using CSChen.Math.Distribution;
 
@@ -34,6 +32,10 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
         public LGPCrossoverInstruction_Linear(LGPSchema schema)
         {
             mMaxDifferenceOfSegmentLength = schema.MaxDifferenceOfSegmentLength;
+            mMaxProgramLength = schema.MaxProgramLength;
+            mMinProgramLength = schema.MinProgramLength;
+            mMaxSegmentLength = schema.MaxSegmentLength;
+            mMaxDistanceOfCrossoverPoints = schema.MaxDistanceOfCrossoverPoints;
         }
 
         public override LGPCrossoverInstruction Clone()

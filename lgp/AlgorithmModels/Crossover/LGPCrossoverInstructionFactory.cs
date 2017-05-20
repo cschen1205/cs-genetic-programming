@@ -28,18 +28,20 @@ namespace CSChen.LGP.AlgorithmModels.Crossover
         {
             if (worker == null)
             {
-                LGPSchema.CrossoverType attrname = schema.Crossover;
-                if (attrname == LGPSchema.CrossoverType.linear)
+                var attrname = schema.Crossover;
+                switch (attrname)
                 {
-                    worker = new LGPCrossoverInstruction_Linear(schema);
-                }
-                else if (attrname == LGPSchema.CrossoverType.one_point)
-                {
-                    worker = new LGPCrossoverInstruction_OnePoint(schema);
-                }
-                else if (attrname == LGPSchema.CrossoverType.one_seg)
-                {
-                    worker = new LGPCrossoverInstruction_OneSegment(schema);
+                    case LGPSchema.CrossoverType.linear:
+                        worker = new LGPCrossoverInstruction_Linear(schema);
+                        break;
+                    case LGPSchema.CrossoverType.one_point:
+                        worker = new LGPCrossoverInstruction_OnePoint(schema);
+                        break;
+                    case LGPSchema.CrossoverType.one_seg:
+                        worker = new LGPCrossoverInstruction_OneSegment(schema);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
             

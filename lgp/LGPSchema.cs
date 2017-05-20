@@ -12,5 +12,11 @@ namespace lgp
         }
 
         public CrossoverType Crossover = CrossoverType.linear;
+
+        public int MaxDifferenceOfSegmentLength { get; set; } = 10;
+        public int MaxProgramLength { get; set; } = 100;
+        public int MinProgramLength { get; set; } = 20;
+        public int MaxSegmentLength { get; set; } = 10;
+        public int MaxDistanceOfCrossoverPoints { get; set; } = 5;
     }
 }
