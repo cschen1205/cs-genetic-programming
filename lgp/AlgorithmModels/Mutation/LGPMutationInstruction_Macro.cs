@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
 namespace LGP.AlgorithmModels.Mutation
 {
@@ -11,64 +12,31 @@ namespace LGP.AlgorithmModels.Mutation
 
     public class LGPMutationInstruction_Macro : LGPMutationInstruction
     {
-        double mMacroMutateInsertionRate;
-        double mMacroMutateDeletionRate;
-        int mMacroMutateMinProgramLength;
-        int mMacroMutateMaxProgramLength;
-        bool mEffectiveMutation;
+	    private double _macroMutateInsertionRate;
+	    private double _macroMutateDeletionRate;
+	    private int _macroMutateMinProgramLength;
+	    private int _macroMutateMaxProgramLength;
+	    private bool _effectiveMutation;
 
         public LGPMutationInstruction_Macro()
         {
-            mMacroMutateInsertionRate = (0.5);
-            mMacroMutateDeletionRate=(0.5);
-            mEffectiveMutation=(false);
-            mMacroMutateMaxProgramLength=(100);
-            mMacroMutateMinProgramLength=(20);
+            _macroMutateInsertionRate = 0.5;
+            _macroMutateDeletionRate=0.5;
+            _effectiveMutation=false;
+            _macroMutateMaxProgramLength=100;
+            _macroMutateMinProgramLength=20;
         }
 
-        public LGPMutationInstruction_Macro(XmlElement xml_level1)
+        public LGPMutationInstruction_Macro(LGPSchema lgp)
         {
-            foreach (XmlElement xml_level2 in xml_level1.ChildNodes)
-            {
-                if (xml_level2.Name == "param")
-                {
-                    string attrname = xml_level2.Attributes["name"].Value;
-                    string attrvalue = xml_level2.Attributes["value"].Value;
-                    if (attrname == "insertion_mutation_probability")
-                    {
-                        double value = 0;
-                        double.TryParse(attrvalue, out value);
-                        mMacroMutateInsertionRate = value;
-                    }
-                    else if (attrname == "deletion_mutation_probability")
-                    {
-                        double value = 0;
-                        double.TryParse(attrvalue, out value);
-                        mMacroMutateDeletionRate = value;
-                    }
-                    else if (attrname == "min_program_length")
-                    {
-                        int value = 0;
-                        int.TryParse(attrvalue, out value);
-                        mMacroMutateMinProgramLength = value;
-                    }
-                    else if (attrname == "max_program_length")
-                    {
-                        int value = 0;
-                        int.TryParse(attrvalue, out value);
-                        mMacroMutateMaxProgramLength = value;
-                    }
-                    else if (attrname == "effective_mutation")
-                    {
-                        bool value = false;
-                        bool.TryParse(attrvalue, out value);
-                        mEffectiveMutation = value;
-                    }
-                }
-            }
+	        _macroMutateInsertionRate = lgp.MacroMutateInsertionRate;
+	        _macroMutateDeletionRate = lgp.MacroMutationDeletionRate;
+	        _effectiveMutation = lgp.EffectiveMutation;
+	        _macroMutateMaxProgramLength = lgp.MaxProgramLength;
+	        _macroMutateMinProgramLength = lgp.MinProgramLength;
 
-            mMacroMutateInsertionRate /= (mMacroMutateInsertionRate + mMacroMutateDeletionRate);
-            mMacroMutateDeletionRate = 1 - mMacroMutateInsertionRate;
+            _macroMutateInsertionRate /= (_macroMutateInsertionRate + _macroMutateDeletionRate);
+            _macroMutateDeletionRate = 1 - _macroMutateInsertionRate;
         }
 
         public override void Mutate(LGPPop lgpPop, LGPProgram child)
@@ -89,7 +57,7 @@ namespace LGP.AlgorithmModels.Mutation
 
 	        double r=DistributionModel.GetUniform();
 	        List<LGPInstruction> instructions=child.Instructions;
-	        if(child.InstructionCount < mMacroMutateMaxProgramLength && ((r < mMacroMutateInsertionRate)  || child.InstructionCount == mMacroMutateMinProgramLength))
+	        if(child.InstructionCount < _macroMutateMaxProgramLength && ((r < _macroMutateInsertionRate)  || child.InstructionCount == _macroMutateMinProgramLength))
 	        {
 		        LGPInstruction inserted_instruction=new LGPInstruction(child);
 		        inserted_instruction.Create();
@@ -103,7 +71,7 @@ namespace LGP.AlgorithmModels.Mutation
 			        instructions.Insert(loc, inserted_instruction);
 		        }
 
-		        if(mEffectiveMutation)
+		        if(_effectiveMutation)
 		        {
 			        while(instructions[loc].IsConditionalConstruct && loc < instructions.Count)
 			        {
@@ -132,10 +100,10 @@ namespace LGP.AlgorithmModels.Mutation
 			        }
 		        }
 	        }
-	        else if(child.InstructionCount > mMacroMutateMinProgramLength && ((r > mMacroMutateInsertionRate) || child.InstructionCount == mMacroMutateMaxProgramLength))
+	        else if(child.InstructionCount > _macroMutateMinProgramLength && ((r > _macroMutateInsertionRate) || child.InstructionCount == _macroMutateMaxProgramLength))
 	        {
 		        int loc=DistributionModel.NextInt(instructions.Count);
-		        if(mEffectiveMutation)
+		        if(_effectiveMutation)
 		        {
 			        for(int i=0; i<10; i++)
 			        {
@@ -157,11 +125,11 @@ namespace LGP.AlgorithmModels.Mutation
         public override LGPMutationInstruction Clone()
         {
             LGPMutationInstruction_Macro clone = new LGPMutationInstruction_Macro();
-            clone.mMacroMutateInsertionRate = mMacroMutateInsertionRate;
-            clone.mMacroMutateDeletionRate = mMacroMutateDeletionRate;
-            clone.mMacroMutateMaxProgramLength = mMacroMutateMaxProgramLength;
-            clone.mMacroMutateMinProgramLength = mMacroMutateMinProgramLength;
-            clone.mEffectiveMutation = mEffectiveMutation;
+            clone._macroMutateInsertionRate = _macroMutateInsertionRate;
+            clone._macroMutateDeletionRate = _macroMutateDeletionRate;
+            clone._macroMutateMaxProgramLength = _macroMutateMaxProgramLength;
+            clone._macroMutateMinProgramLength = _macroMutateMinProgramLength;
+            clone._effectiveMutation = _effectiveMutation;
 
             return clone;
         }

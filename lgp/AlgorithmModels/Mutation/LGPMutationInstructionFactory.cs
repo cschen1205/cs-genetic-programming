@@ -12,33 +12,17 @@ namespace LGP.AlgorithmModels.Mutation
     {
         private string mFilename;
         private LGPMutationInstruction mCurrentMacroMutation;
+        private LGPSchema schema;
 
-        public LGPMutationInstructionFactory(LGPSchema)
+        public LGPMutationInstructionFactory(LGPSchema lgp)
         {
-            mFilename = filename;
-            XmlDocument doc = new XmlDocument();
-            doc.Load(mFilename);
-            XmlElement doc_root = doc.DocumentElement;
-            string selected_strategy = doc_root.Attributes["strategy"].Value;
-            foreach (XmlElement xml_level1 in doc_root.ChildNodes)
-            {
-                if (xml_level1.Name == "strategy")
-                {
-                    string attrname = xml_level1.Attributes["name"].Value;
-                    if (attrname == selected_strategy)
-                    {
-                        if (attrname == "macro_mutation")
-                        {
-                            mCurrentMacroMutation = new LGPMutationInstruction_Macro(xml_level1);
-                        }
-                    }
-                }
-            }
+            schema = lgp;
+            mCurrentMacroMutation = new LGPMutationInstruction_Macro(lgp);
         }
 
         public virtual LGPMutationInstructionFactory Clone()
         {
-            LGPMutationInstructionFactory clone = new LGPMutationInstructionFactory(mFilename);
+            LGPMutationInstructionFactory clone = new LGPMutationInstructionFactory(schema);
             return clone;
         }
 

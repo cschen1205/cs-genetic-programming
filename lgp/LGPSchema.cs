@@ -11,6 +11,7 @@ namespace lgp
             one_seg
         }
 
+
         public CrossoverType Crossover = CrossoverType.linear;
 
         public int MaxDifferenceOfSegmentLength { get; set; } = 10;
@@ -19,5 +20,8 @@ namespace lgp
         public int MaxSegmentLength { get; set; } = 10;
         public int MaxDistanceOfCrossoverPoints { get; set; } = 5;
         public double InsertionProbabilityInCrossover { get; set; } = 0.5;
+        public double MacroMutateInsertionRate { get; set; } = 0.5;
+        public double MacroMutationDeletionRate { get; set; } = 0.5;
+        public bool EffectiveMutation { get; set; } = false;
     }
 }
