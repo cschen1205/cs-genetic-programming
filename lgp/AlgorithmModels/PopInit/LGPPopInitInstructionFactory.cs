@@ -32,7 +32,7 @@ namespace LGP.AlgorithmModels.PopInit
 
         public virtual LGPPopInitInstructionFactory Clone()
         {
-            LGPPopInitInstructionFactory clone = new LGPPopInitInstructionFactory(mFilename);
+            LGPPopInitInstructionFactory clone = new LGPPopInitInstructionFactory(schema);
             return clone;
         }
 

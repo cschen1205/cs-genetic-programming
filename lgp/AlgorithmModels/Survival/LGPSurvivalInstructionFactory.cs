@@ -17,7 +17,7 @@ namespace LGP.AlgorithmModels.Survival
         {
             mFilename = filename;
             XmlDocument doc = new XmlDocument();
-            doc.Load(mFilename);
+            doc.Load(mschema);
             XmlElement doc_root = doc.DocumentElement;
             string selected_strategy = doc_root.Attributes["strategy"].Value;
             foreach (LGPSchema schema in doc_root.ChildNodes)
@@ -42,7 +42,7 @@ namespace LGP.AlgorithmModels.Survival
 
         public virtual LGPSurvivalInstructionFactory Clone()
         {
-            LGPSurvivalInstructionFactory clone = new LGPSurvivalInstructionFactory(mFilename);
+            LGPSurvivalInstructionFactory clone = new LGPSurvivalInstructionFactory(mschema);
             return clone;
         }
 

@@ -42,7 +42,7 @@ namespace LGP.ComponentModels
             return clone;
         }
         
-        public virtual void Mutate(Math.Distribution.Gaussian gaussian, double standard_deviation)
+        public virtual void Mutate(maths.Distribution.Gaussian gaussian, double standard_deviation)
         {
             mValue+=gaussian.GetNormal() * standard_deviation;
         }

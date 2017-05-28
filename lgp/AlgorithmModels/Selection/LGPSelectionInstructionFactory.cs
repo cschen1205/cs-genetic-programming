@@ -17,7 +17,7 @@ namespace LGP.AlgorithmModels.Selection
         {
             mFilename = filename;
             XmlDocument doc = new XmlDocument();
-            doc.Load(mFilename);
+            doc.Load(mschema);
             XmlElement doc_root = doc.DocumentElement;
             string selected_strategy = doc_root.Attributes["strategy"].Value;
             foreach (XmlElement xml_level1 in doc_root.ChildNodes)
@@ -38,7 +38,7 @@ namespace LGP.AlgorithmModels.Selection
 
         public virtual LGPSelectionInstructionFactory Clone()
         {
-            LGPSelectionInstructionFactory clone = new LGPSelectionInstructionFactory(mFilename);
+            LGPSelectionInstructionFactory clone = new LGPSelectionInstructionFactory(mschema);
             return clone;
         }
 

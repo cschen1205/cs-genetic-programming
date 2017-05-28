@@ -427,7 +427,7 @@ namespace LGP.ComponentModels
         /// 3. if micro-mutate-constant type is selected, then randomly pick an effective instruction with a constant as one
         /// of its register value, mutate the constant to c+$N(0, \omega_{\mu}$
         /// </summary>
-        public void MicroMutate(Math.Distribution.Gaussian gauss)
+        public void MicroMutate(maths.Distribution.Gaussian gauss)
         {
             double micro_mutate_operator_rate = MicroMutateOperatorRate;
             double micro_mutate_register_rate = MicroMutateRegisterRate;
@@ -435,7 +435,7 @@ namespace LGP.ComponentModels
             double operator_sector = micro_mutate_operator_rate;
             double register_sector = operator_sector + micro_mutate_register_rate;
             
-            double r=Math.Distribution.DistributionModel.GetUniform();
+            double r=maths.Distribution.DistributionModel.GetUniform();
             if (r < operator_sector)
             {
                 MutateInstructionOperator();
@@ -478,13 +478,13 @@ namespace LGP.ComponentModels
 
         public void MutateInstructionOperator()
         {
-            LGPInstruction instruction = mInstructions[Math.Distribution.DistributionModel.NextInt(InstructionCount)];
+            LGPInstruction instruction = mInstructions[maths.Distribution.DistributionModel.NextInt(InstructionCount)];
             instruction.MutateOperator();
         }
 
         public void MutateInstructionRegister()
         {
-            LGPInstruction selected_instruction = mInstructions[Math.Distribution.DistributionModel.NextInt(InstructionCount)];
+            LGPInstruction selected_instruction = mInstructions[maths.Distribution.DistributionModel.NextInt(InstructionCount)];
             double p_const = 0;
             foreach (LGPInstruction instruction in mInstructions)
             {
@@ -504,7 +504,7 @@ namespace LGP.ComponentModels
         /// 2. change constant c through a standard deviation from the current value
         /// c:=c + normal(mean:=0, standard_deviation)
         /// </summary>
-        public void MutateInstructionConstant(Math.Distribution.Gaussian guass)
+        public void MutateInstructionConstant(maths.Distribution.Gaussian guass)
         {
             LGPInstruction selected_instruction = null;
             foreach (LGPInstruction instruction in mInstructions)
@@ -515,7 +515,7 @@ namespace LGP.ComponentModels
                     {
                         selected_instruction = instruction;
                     }
-                    else if (Math.Distribution.DistributionModel.GetUniform() < 0.5)
+                    else if (maths.Distribution.DistributionModel.GetUniform() < 0.5)
                     {
                         selected_instruction = instruction;
                     }

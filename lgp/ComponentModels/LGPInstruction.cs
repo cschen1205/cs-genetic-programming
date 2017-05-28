@@ -30,7 +30,7 @@ namespace LGP.ComponentModels
             mOperator = mProgram.OperatorSet.FindRandomOperator();
 
             double p_const = 0.5;
-            double r = Math.Distribution.DistributionModel.GetUniform();
+            double r = maths.Distribution.DistributionModel.GetUniform();
             if (r < p_const)
             {
                 mOperand1 = mProgram.ConstantSet.FindRandomRegister();
@@ -45,7 +45,7 @@ namespace LGP.ComponentModels
             }
             else
             {
-                r = Math.Distribution.DistributionModel.GetUniform();
+                r = maths.Distribution.DistributionModel.GetUniform();
                 if (r < p_const)
                 {
                     mOperand2 = mProgram.ConstantSet.FindRandomRegister();
@@ -159,14 +159,14 @@ namespace LGP.ComponentModels
 
         public virtual void MutateRegister(double p_const = 0.5)
         {
-            double r = Math.Distribution.DistributionModel.GetUniform();
+            double r = maths.Distribution.DistributionModel.GetUniform();
             if (r < 0.5)
             {
                 mDestinationRegister = mProgram.RegisterSet.FindRandomRegister(mDestinationRegister);
             }
             else
             {
-                r = Math.Distribution.DistributionModel.GetUniform();
+                r = maths.Distribution.DistributionModel.GetUniform();
                 LGPRegister arg1, arg2;
                 if (r < 0.5)
                 {
@@ -185,7 +185,7 @@ namespace LGP.ComponentModels
                 }
                 else
                 {
-                    r = Math.Distribution.DistributionModel.GetUniform();
+                    r = maths.Distribution.DistributionModel.GetUniform();
                     if (r < p_const)
                     {
                         arg1 = mProgram.ConstantSet.FindRandomRegister();
@@ -201,7 +201,7 @@ namespace LGP.ComponentModels
             }
         }
 
-        public virtual void MutateConstant(Math.Distribution.Gaussian gauss, double standard_deviation)
+        public virtual void MutateConstant(maths.Distribution.Gaussian gauss, double standard_deviation)
         {
             if (mOperand1.IsConstant)
             {

@@ -30,7 +30,7 @@ namespace LGP.ComponentModels
         {
             for(int attempts=0; attempts < 10; attempts++)
             {
-                double r = mWeightSum * Math.Distribution.DistributionModel.GetUniform();
+                double r = mWeightSum * maths.Distribution.DistributionModel.GetUniform();
 
                 double current_sum = 0;
                 foreach (KeyValuePair<LGPRegister, double> point in mRegisters)

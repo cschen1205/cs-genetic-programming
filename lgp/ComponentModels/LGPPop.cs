@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 using LGP.AlgorithmModels.Crossover;
 using LGP.AlgorithmModels.Mutation;
 using LGP.AlgorithmModels.PopInit;
@@ -52,7 +53,7 @@ namespace LGP.ComponentModels
      */
     public class LGPPop
     {
-        private LGPConfig mConfig;
+        private LGPSchema mConfig;
         private LGPEnvironment mEnvironment;
         private bool mSetup = false;
         private int mCurrentGeneration = 0;
@@ -94,7 +95,7 @@ namespace LGP.ComponentModels
 
         private Gaussian mGaussian = new Gaussian();
 
-        public LGPPop(LGPConfig config)
+        public LGPPop(LGPSchema config)
         {
             mConfig = config;
         }
@@ -260,7 +261,7 @@ namespace LGP.ComponentModels
             return sb.ToString();
         }
 
-        protected virtual LGPEnvironment CreateEnvironment(LGPConfig lgpConfig)
+        protected virtual LGPEnvironment CreateEnvironment(LGPSchema schema)
         {
             LGPEnvironment environment = new LGPEnvironment(lgpConfig);
             environment.CreateFitnessCaseTriggered += (index) =>
@@ -277,27 +278,27 @@ namespace LGP.ComponentModels
         
         protected virtual LGPMutationInstructionFactory CreateMutationInstructionFactory(LGPSchema schema)
         {
-            return new LGPMutationInstructionFactory(filename);
+            return new LGPMutationInstructionFactory(schema);
         }
         protected virtual LGPCrossoverInstructionFactory CreateCrossoverInstructionFactory(LGPSchema schema)
         {
-            return new LGPCrossoverInstructionFactory(filename);
+            return new LGPCrossoverInstructionFactory(schema);
         }
         protected virtual LGPPopInitInstructionFactory CreatePopInitInstructionFactory(LGPSchema schema)
         {
-            return new LGPPopInitInstructionFactory(filename);
+            return new LGPPopInitInstructionFactory(schema);
         }
         protected virtual LGPSelectionInstructionFactory CreateReproductionSelectionInstructionFactory(LGPSchema schema)
         {
-            return new LGPSelectionInstructionFactory(filename);
+            return new LGPSelectionInstructionFactory(schema);
         }
         protected virtual LGPRegInitInstructionFactory CreateRegInitInstructionFactory(LGPSchema schema)
         {
-            return new LGPRegInitInstructionFactory(filename);
+            return new LGPRegInitInstructionFactory(schema);
         }
         protected virtual LGPSurvivalInstructionFactory CreateSurvivalInstructionFactory(LGPSchema schema)
         {
-            return new LGPSurvivalInstructionFactory(filename);
+            return new LGPSurvivalInstructionFactory(schema);
         }
 
         public virtual LGPProgram CreateProgram(int size, LGPEnvironment env)
