@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <Folder Include="AlgorithmModels\Crossover" />
     <Folder Include="AlgorithmModels\Mutation" />
@@ -7,7 +7,11 @@
     <Folder Include="AlgorithmModels\Selection" />
     <Folder Include="AlgorithmModels\Survival" />
     <Folder Include="ComponentModels\Operators" />
+    <Folder Include="Distribution" />
+    <Folder Include="Helpers" />
     <Folder Include="ProblemModels" />
+    <Folder Include="SpecialFunctions" />
+    <Folder Include="Statistics" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
