@@ -6,8 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Math.SpecialFunctions;
-using Math.Helpers;
+using maths.SpecialFunctions;
+using maths.Helpers;
 
 namespace maths.Distribution
 {

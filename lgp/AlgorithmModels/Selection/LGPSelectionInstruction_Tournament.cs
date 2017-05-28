@@ -7,7 +7,7 @@ namespace LGP.AlgorithmModels.Selection
 {
     using System.Xml;
     using LGP.ComponentModels;
-    using Math.Distribution;
+    using maths.Distribution;
 
     class LGPSelectionInstruction_Tournament : LGPSelectionInstruction
     {

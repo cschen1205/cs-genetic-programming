@@ -6,7 +6,7 @@ using lgp;
 namespace LGP.AlgorithmModels.Crossover
 {
     using LGP.ComponentModels;
-    using Math.Distribution;
+    using maths.Distribution;
 
     // CSChen says:
     // this is derived from Algorithm 5.1 of Section 5.7.1 of Linear Genetic Programming

@@ -8,7 +8,7 @@ namespace LGP.AlgorithmModels.Mutation
 {
     using System.Xml;
     using LGP.ComponentModels;
-    using Math.Distribution;
+    using maths.Distribution;
 
     public class LGPMutationInstruction_Macro : LGPMutationInstruction
     {

@@ -8,7 +8,7 @@ namespace LGP.AlgorithmModels.Crossover
 {
     using System.Xml;
     using LGP.ComponentModels;
-    using Math.Distribution;
+    using maths.Distribution;
 
     /* CSChen says:
        This operator is derived from Algorithm 5.2 in Section 5.7.2 of Linear Genetic Programming

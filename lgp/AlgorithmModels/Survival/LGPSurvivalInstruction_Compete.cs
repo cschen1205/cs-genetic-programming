@@ -7,7 +7,7 @@ namespace LGP.AlgorithmModels.Survival
 {
     using System.Xml;
     using LGP.ComponentModels;
-    using Math.Distribution;
+    using maths.Distribution;
 
     class LGPSurvivalInstruction_Compete : LGPSurvivalInstruction
     {

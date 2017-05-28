@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Math.SpecialFunctions;
+using maths.SpecialFunctions;
 
 namespace maths.Distribution
 {

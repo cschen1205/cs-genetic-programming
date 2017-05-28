@@ -7,7 +7,7 @@ namespace LGP.AlgorithmModels.PopInit
 {
     using System.Xml;
     using LGP.ComponentModels;
-    using Math.Distribution;
+    using maths.Distribution;
 
     class LGPPopInitInstruction_VariableLength : LGPPopInitInstruction
     {
