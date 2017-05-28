@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
 namespace LGP.AlgorithmModels.Selection
 {
@@ -10,35 +11,18 @@ namespace LGP.AlgorithmModels.Selection
 
     public class LGPSelectionInstructionFactory
     {
-        private string mFilename;
+        private LGPSchema _schema;
         private LGPSelectionInstruction mCurrentInstruction;
 
         public LGPSelectionInstructionFactory(LGPSchema schema)
         {
-            mFilename = filename;
-            XmlDocument doc = new XmlDocument();
-            doc.Load(mschema);
-            XmlElement doc_root = doc.DocumentElement;
-            string selected_strategy = doc_root.Attributes["strategy"].Value;
-            foreach (XmlElement xml_level1 in doc_root.ChildNodes)
-            {
-                if (xml_level1.Name == "strategy")
-                {
-                    string attrname = xml_level1.Attributes["name"].Value;
-                    if (attrname == selected_strategy)
-                    {
-                        if (attrname == "tournament")
-                        {
-                            mCurrentInstruction = new LgpSelectionInstructionTournament(xml_level1);
-                        }
-                    }
-                }
-            }
+            _schema = schema;
+            mCurrentInstruction = new LgpSelectionInstructionTournament(schema);
         }
 
         public virtual LGPSelectionInstructionFactory Clone()
         {
-            LGPSelectionInstructionFactory clone = new LGPSelectionInstructionFactory(mschema);
+            LGPSelectionInstructionFactory clone = new LGPSelectionInstructionFactory(_schema);
             return clone;
         }
 

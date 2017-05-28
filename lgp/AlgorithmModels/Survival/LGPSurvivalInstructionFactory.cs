@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
 namespace LGP.AlgorithmModels.Survival
 {
@@ -10,39 +11,28 @@ namespace LGP.AlgorithmModels.Survival
 
     public class LGPSurvivalInstructionFactory
     {
-        private string mFilename;
+        private LGPSchema _schema;
         private LGPSurvivalInstruction mCurrentInstruction;
 
         public LGPSurvivalInstructionFactory(LGPSchema schema)
         {
-            mFilename = filename;
-            XmlDocument doc = new XmlDocument();
-            doc.Load(mschema);
-            XmlElement doc_root = doc.DocumentElement;
-            string selected_strategy = doc_root.Attributes["strategy"].Value;
-            foreach (LGPSchema schema in doc_root.ChildNodes)
+            _schema = schema;
+
+            LGPSchema.SurvivalType strategy = schema.Survival;
+            if (strategy == LGPSchema.SurvivalType.complete)
             {
-                if (xml_level1.Name == "strategy")
-                {
-                    string attrname = xml_level1.Attributes["name"].Value;
-                    if (attrname == selected_strategy)
-                    {
-                        if (attrname == "compete")
-                        {
-                            mCurrentInstruction = new LgpSurvivalInstructionCompete(xml_level1);
-                        }
-                        else if (attrname == "probablistic")
-                        {
-                            mCurrentInstruction = new LgpSurvivalInstructionProbablistic(xml_level1);
-                        }
-                    }
-                }
+                mCurrentInstruction = new LgpSurvivalInstructionCompete(schema);
             }
+            else
+            {
+                mCurrentInstruction = new LgpSurvivalInstructionProbablistic(schema);
+            }
+            
         }
 
         public virtual LGPSurvivalInstructionFactory Clone()
         {
-            LGPSurvivalInstructionFactory clone = new LGPSurvivalInstructionFactory(mschema);
+            LGPSurvivalInstructionFactory clone = new LGPSurvivalInstructionFactory(_schema);
             return clone;
         }
 

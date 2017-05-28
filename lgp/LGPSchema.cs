@@ -24,10 +24,17 @@ namespace lgp
             standard
         }
 
+        public enum SurvivalType
+        {
+            complete,
+            probablistic
+        }
+
 
         public CrossoverType Crossover = CrossoverType.linear;
         public PopInitType PopInit { get; set; } = PopInitType.variable_length;
         public RegInitType RegInit { get; set; } = RegInitType.complete;
+        public SurvivalType Survival { get; set; } = SurvivalType.probablistic;
 
         public int MaxDifferenceOfSegmentLength { get; set; } = 10;
         public int MaxProgramLength { get; set; } = 100;
@@ -57,8 +64,10 @@ namespace lgp
         public double CrossoverRate = 0.5;
         public double MacroMutationRate { get; set; } = 0.5;
         public double MicroMutationRate { get; set; } = 0.5;
+        
         public double MicroMutateConstantRate { get; set; } = 0.5;
-
+        public double MicroMutateRegisterRate { get; set; } = 0.5;
+        public double MicroMutateOperatorRate { get; set; } = 0.5;
 
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
 namespace LGP.ProblemModels
 {
@@ -34,8 +35,8 @@ namespace LGP.ProblemModels
         }
 
         public object Data = null;
-        public LGPConfig Config = null;
+        public LGPSchema Config = null;
 
-        public LGPEnvironment(LGPConfig config) { Config = config; }
+        public LGPEnvironment(LGPSchema config) { Config = config; }
     }
 }
