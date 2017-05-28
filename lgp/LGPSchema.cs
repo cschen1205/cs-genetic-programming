@@ -38,6 +38,8 @@ namespace lgp
         public double MacroMutationDeletionRate { get; set; } = 0.5;
         public bool EffectiveMutation { get; set; } = false;
 
+        public double ReproductionProbability { get; set; } = 1.0;
+
         public int PopInitConstantProgramLength { get; set; } = 100;
 
         public int TournamentSize { get; set; } = 5;

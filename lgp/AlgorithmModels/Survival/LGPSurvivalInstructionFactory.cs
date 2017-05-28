@@ -29,11 +29,11 @@ namespace LGP.AlgorithmModels.Survival
                     {
                         if (attrname == "compete")
                         {
-                            mCurrentInstruction = new LGPSurvivalInstruction_Compete(xml_level1);
+                            mCurrentInstruction = new LgpSurvivalInstructionCompete(xml_level1);
                         }
                         else if (attrname == "probablistic")
                         {
-                            mCurrentInstruction = new LGPSurvivalInstruction_Probablistic(xml_level1);
+                            mCurrentInstruction = new LgpSurvivalInstructionProbablistic(xml_level1);
                         }
                     }
                 }

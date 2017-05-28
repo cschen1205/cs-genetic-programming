@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
+using lgp;
 
 namespace LGP.AlgorithmModels.Survival
 {
     
-    using LGP.ComponentModels;
-    using maths.Distribution;
+    using ComponentModels;
 
-    class LGPSurvivalInstruction_Compete : LGPSurvivalInstruction
+    class LgpSurvivalInstructionCompete : LGPSurvivalInstruction
     {
-        public LGPSurvivalInstruction_Compete()
+        public LgpSurvivalInstructionCompete()
         {
 
         }
 
-        public LGPSurvivalInstruction_Compete(LGPSchema schema)
-            : base(xml_level1)
+        public LgpSurvivalInstructionCompete(LGPSchema schema)
         {
             
         }
@@ -34,7 +30,7 @@ namespace LGP.AlgorithmModels.Survival
 
         public override LGPSurvivalInstruction Clone()
         {
-            LGPSurvivalInstruction_Compete clone = new LGPSurvivalInstruction_Compete();
+            LgpSurvivalInstructionCompete clone = new LgpSurvivalInstructionCompete();
             return clone;
         }
 
