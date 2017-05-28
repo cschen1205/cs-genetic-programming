@@ -15,7 +15,7 @@ namespace LGP.AlgorithmModels.Selection
 
         }
 
-        public LGPSelectionInstruction(XmlElement xml_level1)
+        public LGPSelectionInstruction(LGPSchema schema)
         {
 
         }

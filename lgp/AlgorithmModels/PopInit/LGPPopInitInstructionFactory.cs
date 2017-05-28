@@ -22,10 +22,10 @@ namespace LGP.AlgorithmModels.PopInit
             switch (attrname)
             {
                 case LGPSchema.PopInitType.variable_length:
-                    mCurrentInstruction = new LGPPopInitInstruction_VariableLength(lgp);
+                    mCurrentInstruction = new LgpPopInitInstructionVariableLength(lgp);
                     break;
                 case LGPSchema.PopInitType.constant_length:
-                    mCurrentInstruction = new LGPPopInitInstruction_ConstantLength(lgp);
+                    mCurrentInstruction = new LgpPopInitInstructionConstantLength(lgp);
                     break;
             }
         }

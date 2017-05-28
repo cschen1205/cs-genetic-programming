@@ -31,7 +31,7 @@ namespace LGP.ComponentModels
             doc.Load(filename);
             XmlElement doc_root=doc.DocumentElement;
 
-            foreach (XmlElement xml_level1 in doc_root.ChildNodes)
+            foreach (LGPSchema schema in doc_root.ChildNodes)
             {
                 if (xml_level1.Name == "parameters")
                 {

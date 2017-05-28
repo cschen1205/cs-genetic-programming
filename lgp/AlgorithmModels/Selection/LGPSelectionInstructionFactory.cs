@@ -29,7 +29,7 @@ namespace LGP.AlgorithmModels.Selection
                     {
                         if (attrname == "tournament")
                         {
-                            mCurrentInstruction = new LGPSelectionInstruction_Tournament(xml_level1);
+                            mCurrentInstruction = new LgpSelectionInstructionTournament(xml_level1);
                         }
                     }
                 }

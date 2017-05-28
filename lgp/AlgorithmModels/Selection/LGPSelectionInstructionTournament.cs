@@ -2,39 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
 namespace LGP.AlgorithmModels.Selection
 {
     
-    using LGP.ComponentModels;
+    using ComponentModels;
     using maths.Distribution;
 
-    class LGPSelectionInstruction_Tournament : LGPSelectionInstruction
+    class LgpSelectionInstructionTournament : LGPSelectionInstruction
     {
         private int mTournamentSize=5;
 
-        public LGPSelectionInstruction_Tournament()
+        public LgpSelectionInstructionTournament()
         {
 
         }
 
-        public LGPSelectionInstruction_Tournament(XmlElement xml_level1)
-            : base(xml_level1)
+        public LgpSelectionInstructionTournament(LGPSchema schema)
         {
-            foreach (XmlElement xml_level2 in xml_level1.ChildNodes)
-            {
-                if (xml_level2.Name == "param")
-                {
-                    string attrname = xml_level2.Attributes["name"].Value;
-                    string attrvalue = xml_level2.Attributes["value"].Value;
-                    if (attrname == "tournament_size")
-                    {
-                        int value = 0;
-                        int.TryParse(attrvalue, out value);
-                        mTournamentSize = value;
-                    }
-                }
-            }
+	        mTournamentSize = schema.TournamentSize;
         }
 
         public override LGPProgram Select(LGPPop pop)
@@ -97,7 +84,7 @@ namespace LGP.AlgorithmModels.Selection
 
         public override LGPSelectionInstruction Clone()
         {
-            LGPSelectionInstruction_Tournament clone = new LGPSelectionInstruction_Tournament();
+            LgpSelectionInstructionTournament clone = new LgpSelectionInstructionTournament();
             clone.mTournamentSize = mTournamentSize;
             return clone;
         }

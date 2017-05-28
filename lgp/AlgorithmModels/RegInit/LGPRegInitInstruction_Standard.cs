@@ -19,7 +19,7 @@ namespace LGP.AlgorithmModels.RegInit
 
         }
 
-        public LGPRegInitInstruction_Standard(XmlElement xml_level1)
+        public LGPRegInitInstruction_Standard(LGPSchema schema)
             : base(xml_level1)
         {
             foreach (XmlElement xml_level2 in xml_level1.ChildNodes)

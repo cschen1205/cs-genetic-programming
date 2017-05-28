@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
 namespace LGP.AlgorithmModels.RegInit
 {
@@ -17,8 +18,7 @@ namespace LGP.AlgorithmModels.RegInit
 
         }
 
-        public LGPRegInitInstruction_CompleteInputInitReg(XmlElement xml_level1)
-            : base(xml_level1)
+        public LGPRegInitInstruction_CompleteInputInitReg(LGPSchema schema)
         {
             
         }

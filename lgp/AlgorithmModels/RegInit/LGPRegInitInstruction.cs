@@ -16,7 +16,7 @@ namespace LGP.AlgorithmModels.RegInit
 
         }
 
-        public LGPRegInitInstruction(XmlElement xml_level1)
+        public LGPRegInitInstruction(LGPSchema schema)
         {
 
         }

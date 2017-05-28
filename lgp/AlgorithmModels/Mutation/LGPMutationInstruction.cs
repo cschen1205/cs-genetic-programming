@@ -1,4 +1,6 @@
-﻿namespace LGP.AlgorithmModels.Mutation
+﻿using lgp;
+
+namespace LGP.AlgorithmModels.Mutation
 {
     using ComponentModels;
 
@@ -9,7 +11,7 @@
 
         }
 
-        public LGPMutationInstruction(XmlElement xml_level1)
+        public LGPMutationInstruction(LGPSchema schema)
         {
 
         }

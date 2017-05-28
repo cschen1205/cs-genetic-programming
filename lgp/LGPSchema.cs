@@ -33,6 +33,8 @@ namespace lgp
 
         public int PopInitConstantProgramLength { get; set; } = 100;
 
+        public int TournamentSize { get; set; } = 5;
+
 
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using lgp;
 
@@ -9,17 +7,17 @@ namespace LGP.AlgorithmModels.PopInit
     using LGP.ComponentModels;
     using maths.Distribution;
 
-    class LGPPopInitInstruction_VariableLength : LGPPopInitInstruction
+    class LgpPopInitInstructionVariableLength : LGPPopInitInstruction
     {
         private int m_iInitialMaxProgLength;
         private int m_iInitialMinProgLength;
 
-        public LGPPopInitInstruction_VariableLength()
+        public LgpPopInitInstructionVariableLength()
         {
 
         }
 
-        public LGPPopInitInstruction_VariableLength(LGPSchema schema)
+        public LgpPopInitInstructionVariableLength(LGPSchema schema)
         {
             m_iInitialMaxProgLength = schema.MaxProgramLength;
             m_iInitialMinProgLength = schema.MinProgramLength;
@@ -60,7 +58,7 @@ namespace LGP.AlgorithmModels.PopInit
 
         public override LGPPopInitInstruction Clone()
         {
-            LGPPopInitInstruction_VariableLength clone = new LGPPopInitInstruction_VariableLength();
+            LgpPopInitInstructionVariableLength clone = new LgpPopInitInstructionVariableLength();
             clone.m_iInitialMaxProgLength = m_iInitialMaxProgLength;
             clone.m_iInitialMinProgLength = m_iInitialMinProgLength;
             return clone;

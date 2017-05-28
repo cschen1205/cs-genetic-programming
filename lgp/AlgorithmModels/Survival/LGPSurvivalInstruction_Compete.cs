@@ -16,7 +16,7 @@ namespace LGP.AlgorithmModels.Survival
 
         }
 
-        public LGPSurvivalInstruction_Compete(XmlElement xml_level1)
+        public LGPSurvivalInstruction_Compete(LGPSchema schema)
             : base(xml_level1)
         {
             

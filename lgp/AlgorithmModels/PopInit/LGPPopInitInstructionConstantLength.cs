@@ -9,16 +9,16 @@ namespace LGP.AlgorithmModels.PopInit
     
     using LGP.ComponentModels;
 
-    class LGPPopInitInstruction_ConstantLength : LGPPopInitInstruction
+    class LgpPopInitInstructionConstantLength : LGPPopInitInstruction
     {
         private int mConstantProgramLength=100;
 
-        public LGPPopInitInstruction_ConstantLength()
+        public LgpPopInitInstructionConstantLength()
         {
 
         }
 
-        public LGPPopInitInstruction_ConstantLength(LGPSchema schema)
+        public LgpPopInitInstructionConstantLength(LGPSchema schema)
         {
             mConstantProgramLength = schema.PopInitConstantProgramLength;
         }
@@ -44,7 +44,7 @@ namespace LGP.AlgorithmModels.PopInit
 
         public override LGPPopInitInstruction Clone()
         {
-            LGPPopInitInstruction_ConstantLength clone = new LGPPopInitInstruction_ConstantLength();
+            LgpPopInitInstructionConstantLength clone = new LgpPopInitInstructionConstantLength();
             clone.mConstantProgramLength = mConstantProgramLength;
             return clone;
         }

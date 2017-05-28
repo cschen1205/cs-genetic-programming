@@ -21,7 +21,7 @@ namespace LGP.AlgorithmModels.RegInit
             doc.Load(mFilename);
             XmlElement doc_root = doc.DocumentElement;
             string selected_strategy = doc_root.Attributes["strategy"].Value;
-            foreach (XmlElement xml_level1 in doc_root.ChildNodes)
+            foreach (LGPSchema schema in doc_root.ChildNodes)
             {
                 if (xml_level1.Name == "strategy")
                 {

@@ -18,7 +18,7 @@ namespace LGP.AlgorithmModels.Survival
 
         }
 
-        public LGPSurvivalInstruction_Probablistic(XmlElement xml_level1)
+        public LGPSurvivalInstruction_Probablistic(LGPSchema schema)
             : base(xml_level1)
         {
             foreach (XmlElement xml_level2 in xml_level1.ChildNodes)

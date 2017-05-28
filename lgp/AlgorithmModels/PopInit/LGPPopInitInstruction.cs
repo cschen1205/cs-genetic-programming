@@ -15,7 +15,7 @@ namespace LGP.AlgorithmModels.PopInit
 
         }
 
-        public LGPPopInitInstruction(XmlElement xml_level1)
+        public LGPPopInitInstruction(LGPSchema schema)
         {
 
         }
