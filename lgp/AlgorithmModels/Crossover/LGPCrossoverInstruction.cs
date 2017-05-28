@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
+using LGP.AlgorithmModels.Survival;
 
 namespace LGP.AlgorithmModels.Crossover
 {
@@ -14,7 +16,7 @@ namespace LGP.AlgorithmModels.Crossover
 
         }
 
-        public LGPCrossoverInstruction(XmlElement xml_level1)
+        public LGPCrossoverInstruction(LGPSchema schema)
         {
 
         }
