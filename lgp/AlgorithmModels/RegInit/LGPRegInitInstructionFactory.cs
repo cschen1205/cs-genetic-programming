@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
 namespace LGP.AlgorithmModels.RegInit
 {
@@ -11,39 +12,26 @@ namespace LGP.AlgorithmModels.RegInit
 
     public class LGPRegInitInstructionFactory
     {
-        private string mFilename;
         private LGPRegInitInstruction mCurrentInstruction;
+        private LGPSchema schema;
 
-        public LGPRegInitInstructionFactory(string filename)
+        public LGPRegInitInstructionFactory(LGPSchema schema)
         {
-            mFilename = filename;
-            XmlDocument doc = new XmlDocument();
-            doc.Load(mFilename);
-            XmlElement doc_root = doc.DocumentElement;
-            string selected_strategy = doc_root.Attributes["strategy"].Value;
-            foreach (LGPSchema schema in doc_root.ChildNodes)
+            this.schema = schema;
+            LGPSchema.RegInitType strategy = schema.RegInit;
+
+            if (strategy == LGPSchema.RegInitType.complete)
             {
-                if (xml_level1.Name == "strategy")
-                {
-                    string attrname = xml_level1.Attributes["name"].Value;
-                    if (attrname == selected_strategy)
-                    {
-                        if (attrname == "initialize_register_with_input")
-                        {
-                            mCurrentInstruction = new LGPRegInitInstruction_Standard(xml_level1);
-                        }
-                        else if (attrname == "complete_initialization_of_register_with_input")
-                        {
-                            mCurrentInstruction = new LGPRegInitInstruction_CompleteInputInitReg(xml_level1);
-                        }
-                    }
-                }
+                mCurrentInstruction = new LgpRegInitInstructionCompleteInputInitReg(schema);
+            } else if (strategy == LGPSchema.RegInitType.standard)
+            {
+                mCurrentInstruction = new LgpRegInitInstructionStandard(schema);
             }
         }
 
         public virtual LGPRegInitInstructionFactory Clone()
         {
-            LGPRegInitInstructionFactory clone = new LGPRegInitInstructionFactory(mFilename);
+            LGPRegInitInstructionFactory clone = new LGPRegInitInstructionFactory(schema);
             return clone;
         }
 

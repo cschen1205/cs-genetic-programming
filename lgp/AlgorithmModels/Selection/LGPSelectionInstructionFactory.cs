@@ -13,7 +13,7 @@ namespace LGP.AlgorithmModels.Selection
         private string mFilename;
         private LGPSelectionInstruction mCurrentInstruction;
 
-        public LGPSelectionInstructionFactory(string filename)
+        public LGPSelectionInstructionFactory(LGPSchema schema)
         {
             mFilename = filename;
             XmlDocument doc = new XmlDocument();

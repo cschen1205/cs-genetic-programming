@@ -10,15 +10,15 @@ namespace LGP.AlgorithmModels.RegInit
     using LGP.ComponentModels;
     using LGP.ProblemModels;
 
-    class LGPRegInitInstruction_CompleteInputInitReg : LGPRegInitInstruction
+    class LgpRegInitInstructionCompleteInputInitReg : LGPRegInitInstruction
     {
 
-        public LGPRegInitInstruction_CompleteInputInitReg()
+        public LgpRegInitInstructionCompleteInputInitReg()
         {
 
         }
 
-        public LGPRegInitInstruction_CompleteInputInitReg(LGPSchema schema)
+        public LgpRegInitInstructionCompleteInputInitReg(LGPSchema schema)
         {
             
         }
@@ -49,7 +49,7 @@ namespace LGP.AlgorithmModels.RegInit
 
         public override LGPRegInitInstruction Clone()
         {
-            LGPRegInitInstruction_CompleteInputInitReg clone = new LGPRegInitInstruction_CompleteInputInitReg();
+            LgpRegInitInstructionCompleteInputInitReg clone = new LgpRegInitInstructionCompleteInputInitReg();
             return clone;
         }
 

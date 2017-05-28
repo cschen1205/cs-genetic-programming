@@ -24,7 +24,7 @@ namespace LGP.ComponentModels
         private double mMicroMutationRate = 0.5;
         private Dictionary<string, string> mScripts = new Dictionary<string, string>();
 
-        public LGPConfig(string filename)
+        public LGPConfig(LGPSchema schema)
         {
             mFilename = filename;
             XmlDocument doc = new XmlDocument();

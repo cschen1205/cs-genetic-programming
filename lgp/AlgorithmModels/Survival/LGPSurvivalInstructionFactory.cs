@@ -13,7 +13,7 @@ namespace LGP.AlgorithmModels.Survival
         private string mFilename;
         private LGPSurvivalInstruction mCurrentInstruction;
 
-        public LGPSurvivalInstructionFactory(string filename)
+        public LGPSurvivalInstructionFactory(LGPSchema schema)
         {
             mFilename = filename;
             XmlDocument doc = new XmlDocument();

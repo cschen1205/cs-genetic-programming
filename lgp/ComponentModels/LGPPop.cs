@@ -275,27 +275,27 @@ namespace LGP.ComponentModels
             return environment;
         }
         
-        protected virtual LGPMutationInstructionFactory CreateMutationInstructionFactory(string filename)
+        protected virtual LGPMutationInstructionFactory CreateMutationInstructionFactory(LGPSchema schema)
         {
             return new LGPMutationInstructionFactory(filename);
         }
-        protected virtual LGPCrossoverInstructionFactory CreateCrossoverInstructionFactory(string filename)
+        protected virtual LGPCrossoverInstructionFactory CreateCrossoverInstructionFactory(LGPSchema schema)
         {
             return new LGPCrossoverInstructionFactory(filename);
         }
-        protected virtual LGPPopInitInstructionFactory CreatePopInitInstructionFactory(string filename)
+        protected virtual LGPPopInitInstructionFactory CreatePopInitInstructionFactory(LGPSchema schema)
         {
             return new LGPPopInitInstructionFactory(filename);
         }
-        protected virtual LGPSelectionInstructionFactory CreateReproductionSelectionInstructionFactory(string filename)
+        protected virtual LGPSelectionInstructionFactory CreateReproductionSelectionInstructionFactory(LGPSchema schema)
         {
             return new LGPSelectionInstructionFactory(filename);
         }
-        protected virtual LGPRegInitInstructionFactory CreateRegInitInstructionFactory(string filename)
+        protected virtual LGPRegInitInstructionFactory CreateRegInitInstructionFactory(LGPSchema schema)
         {
             return new LGPRegInitInstructionFactory(filename);
         }
-        protected virtual LGPSurvivalInstructionFactory CreateSurvivalInstructionFactory(string filename)
+        protected virtual LGPSurvivalInstructionFactory CreateSurvivalInstructionFactory(LGPSchema schema)
         {
             return new LGPSurvivalInstructionFactory(filename);
         }
