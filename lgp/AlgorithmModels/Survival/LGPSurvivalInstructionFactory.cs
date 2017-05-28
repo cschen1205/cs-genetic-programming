@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LGP.AlgorithmModels.Survival
 {
-    using System.Xml;
+    
     using LGP.ComponentModels;
 
     public class LGPSurvivalInstructionFactory

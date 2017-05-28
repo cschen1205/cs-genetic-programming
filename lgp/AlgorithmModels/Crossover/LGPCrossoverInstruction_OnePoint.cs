@@ -6,7 +6,7 @@ using lgp;
 
 namespace LGP.AlgorithmModels.Crossover
 {
-    using System.Xml;
+    
     using LGP.ComponentModels;
     using maths.Distribution;
 

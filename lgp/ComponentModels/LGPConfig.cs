@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LGP.ComponentModels
 {
-    using System.Xml;
+    
 
     public class LGPConfig
     {

@@ -6,7 +6,7 @@ using lgp;
 
 namespace LGP.AlgorithmModels.Mutation
 {
-    using System.Xml;
+    
     using LGP.ComponentModels;
     using maths.Distribution;
 

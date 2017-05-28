@@ -6,7 +6,7 @@ using lgp;
 
 namespace LGP.AlgorithmModels.PopInit
 {
-    using System.Xml;
+    
     using LGP.ComponentModels;
 
     class LGPPopInitInstruction_ConstantLength : LGPPopInitInstruction

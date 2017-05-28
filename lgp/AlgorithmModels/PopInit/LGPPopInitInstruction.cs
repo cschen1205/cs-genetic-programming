@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LGP.AlgorithmModels.PopInit
 {
-    using System.Xml;
+    
     using LGP.ComponentModels;
 
     public abstract class LGPPopInitInstruction

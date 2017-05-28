@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LGP.AlgorithmModels.Selection
 {
-    using System.Xml;
+    
     using LGP.ComponentModels;
 
     public abstract class LGPSelectionInstruction

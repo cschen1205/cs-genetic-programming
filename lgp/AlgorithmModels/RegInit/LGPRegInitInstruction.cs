@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LGP.AlgorithmModels.RegInit
 {
-    using System.Xml;
+    
     using LGP.ComponentModels;
     using LGP.ProblemModels;
 
