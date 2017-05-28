@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
 namespace LGP.AlgorithmModels.PopInit
 {
@@ -17,23 +18,9 @@ namespace LGP.AlgorithmModels.PopInit
 
         }
 
-        public LGPPopInitInstruction_ConstantLength(XmlElement xml_level1)
-            : base(xml_level1)
+        public LGPPopInitInstruction_ConstantLength(LGPSchema schema)
         {
-            foreach (XmlElement xml_level2 in xml_level1.ChildNodes)
-            {
-                if (xml_level2.Name == "param")
-                {
-                    string attrname = xml_level2.Attributes["name"].Value;
-                    string attrvalue = xml_level2.Attributes["value"].Value;
-                    if (attrname == "constant_length")
-                    {
-                        int value = 0;
-                        int.TryParse(attrvalue, out value);
-                        mConstantProgramLength = value;
-                    }
-                }
-            }
+            mConstantProgramLength = schema.PopInitConstantProgramLength;
         }
 
         public override void Initialize(LGPPop pop)
