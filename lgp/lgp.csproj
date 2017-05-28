@@ -1,7 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <ItemGroup>
-    <ProjectReference Include="..\maths\maths.csproj" />
-  </ItemGroup>
+<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <Folder Include="AlgorithmModels\Crossover" />
     <Folder Include="AlgorithmModels\Mutation" />
