@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using lgp;
 
 namespace LGP.AlgorithmModels.PopInit
 {
-    using System.Xml;
     using LGP.ComponentModels;
     using maths.Distribution;
 
@@ -19,29 +19,10 @@ namespace LGP.AlgorithmModels.PopInit
 
         }
 
-        public LGPPopInitInstruction_VariableLength(XmlElement xml_level1)
-            : base(xml_level1)
+        public LGPPopInitInstruction_VariableLength(LGPSchema schema)
         {
-            foreach (XmlElement xml_level2 in xml_level1.ChildNodes)
-            {
-                if (xml_level2.Name == "param")
-                {
-                    string attrname = xml_level2.Attributes["name"].Value;
-                    string attrvalue = xml_level2.Attributes["value"].Value;
-                    if (attrname == "InitialMinProgLength")
-                    {
-                        int value = 0;
-                        int.TryParse(attrvalue, out value);
-                        m_iInitialMinProgLength = value;
-                    }
-                    else if (attrname == "InitialMaxProgLength")
-                    {
-                        int value = 0;
-                        int.TryParse(attrvalue, out value);
-                        m_iInitialMaxProgLength = value;
-                    }
-                }
-            }
+            m_iInitialMaxProgLength = schema.MaxProgramLength;
+            m_iInitialMinProgLength = schema.MinProgramLength;
         }
 
         public override void Initialize(LGPPop pop)
