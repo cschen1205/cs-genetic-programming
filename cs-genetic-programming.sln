@@ -1,9 +1,11 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lgp", "lgp\lgp.csproj", "{8CA6479F-92AF-4529-AB4F-E767D895770A}"
+EndProject
+Project("{A1C5397E-3920-4B78-90AE-A7E097B0D94D}") = "lgp-unit-test", "lgp-unit-test\lgp-unit-test.csproj", "{A7A37505-CC8A-4684-B142-57344C96A7D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,5 +29,11 @@ Global
 		{8CA6479F-92AF-4529-AB4F-E767D895770A}.Release|x64.Build.0 = Release|x64
 		{8CA6479F-92AF-4529-AB4F-E767D895770A}.Release|x86.ActiveCfg = Release|x86
 		{8CA6479F-92AF-4529-AB4F-E767D895770A}.Release|x86.Build.0 = Release|x86
+		{A7A37505-CC8A-4684-B142-57344C96A7D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7A37505-CC8A-4684-B142-57344C96A7D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7A37505-CC8A-4684-B142-57344C96A7D0}.Debug|x64.ActiveCfg = Debug|x64
+		{A7A37505-CC8A-4684-B142-57344C96A7D0}.Debug|x64.Build.0 = Debug|x64
+		{A7A37505-CC8A-4684-B142-57344C96A7D0}.Debug|x86.ActiveCfg = Debug|x86
+		{A7A37505-CC8A-4684-B142-57344C96A7D0}.Debug|x86.Build.0 = Debug|x86
 	EndGlobalSection
 EndGlobal
