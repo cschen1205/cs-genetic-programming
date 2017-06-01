@@ -159,8 +159,8 @@ namespace maths.Helpers
             if (x <= 10.0 & x == System.Math.Floor(x))
             {
                 y = 0.0;
-                int n = (int)System.Math.Floor(x);
-                for (int i = 1; i <= n - 1; i++)
+                var n = (int)System.Math.Floor(x);
+                for (var i = 1; i <= n - 1; i++)
                 {
                     w = i;
                     y = y + 1.0 / w;
@@ -182,7 +182,7 @@ namespace maths.Helpers
                 {
                     z = 1.0 / (s * s);
 
-                    double polv = 8.33333333333333333333E-2;
+                    var polv = 8.33333333333333333333E-2;
                     polv = polv * z - 2.10927960927960927961E-2;
                     polv = polv * z + 7.57575757575757575758E-3;
                     polv = polv * z - 4.16666666666666666667E-3;
@@ -218,12 +218,12 @@ namespace maths.Helpers
         /// 
         public static double Trigamma(double x)
         {
-            double a = 0.0001;
-            double b = 5.0;
-            double b2 = 0.1666666667;
-            double b4 = -0.03333333333;
-            double b6 = 0.02380952381;
-            double b8 = -0.03333333333;
+            var a = 0.0001;
+            var b = 5.0;
+            var b2 = 0.1666666667;
+            var b4 = -0.03333333333;
+            var b6 = 0.02380952381;
+            var b8 = -0.03333333333;
             double value;
             double y;
             double z;
