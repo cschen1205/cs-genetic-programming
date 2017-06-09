@@ -72,39 +72,6 @@ namespace lgp_unit_test
     
     public class MexicanHatUnitTest
     {
-        static double FunctionXY(double x1, double x2)
-        {
-            return (1 - x1 * x1 / 4 - x2 * x2 / 4) * System.Math.Exp(- x1 * x2 / 8 - x2 * x2 / 8);
-        }
-
-        static List<LGPFitnessCase> LoadData()
-        {
-            
-            List<LGPFitnessCase> result = new List<LGPFitnessCase>();
-
-            double lower_bound=-4;
-            double upper_bound=4;
-            int period=16;
-
-            double interval=(upper_bound - lower_bound) / period;
-
-            for(int i=0; i<period; i++)
-            {
-                double x1=lower_bound + interval * i;
-                for(int j=0; j<period; j++)
-                {
-                    double x2=lower_bound + interval * j;
-                    var fc = new MexicanHatFitnessCase();
-                    fc.X1 = x1;
-                    fc.X2 = x2;
-                    fc.Y = FunctionXY(x1, x2);
-                    result.Add(fc);
-                }
-            }
-
-
-            return result;
-        }
         
         public static List<LGPFitnessCase> mexican_hat()
         {
