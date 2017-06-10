@@ -131,7 +131,6 @@ namespace lgp_unit_test
 
             config.RegisterCount = 6;
 
-            config.MaxGenerations = 10;
 
             pop.CreateFitnessCase += (index) => table[index];
 

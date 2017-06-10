@@ -106,9 +106,13 @@ namespace LGP.AlgorithmModels.Crossover
                 {
                     ls1=ls2;
                 }
-                if((i1+ls1) > gp1.InstructionCount)
+                if ((i1 + ls1) > gp1.InstructionCount)
                 {
-                    ls1=ls2=gp1.InstructionCount-1;
+                    ls1 = gp1.InstructionCount - i1;
+                }
+                if ((i2 + ls2) > gp2.InstructionCount)
+                {
+                    ls2 = gp2.InstructionCount - i2;
                 }
             }
 
